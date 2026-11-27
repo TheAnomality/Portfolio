@@ -2,10 +2,14 @@
   <img src="docs/assets/banner.webp" alt="TheAnomality: a developer who does everything. Portfolio built with React, Three.js, Motion, HyperFrames and Vercel" width="100%">
 </p>
 
+<h3 align="center">
+  <a href="https://portfolio-nine-ivory-rahtuljfr8.vercel.app/">🌌 Open the live site →</a>
+</h3>
+
 <p align="center">
-  <!-- After deploying, add your live link here, e.g.:
-  <a href="https://your-site.vercel.app"><b>🌌 Open the live site</b></a> &nbsp;·&nbsp; -->
-  <a href="#the-particle-universe"><b>Particle universe</b></a>
+  <a href="#try-it-live"><b>Scan the QR</b></a>
+  &nbsp;·&nbsp;
+  <a href="#the-particle-universe">Particle universe</a>
   &nbsp;·&nbsp;
   <a href="#whats-inside">Features</a>
   &nbsp;·&nbsp;
@@ -39,6 +43,20 @@
   <img src="docs/assets/demo.webp" alt="A short tour: the preloader's orbs merge, the hero letters get bolder under the cursor, then the particles morph into an atom, a sakura flower and a portal while scrolling" width="800">
   <br>
   <sub>Preloader → hero → manifesto → the particles become an atom, then sakura, then a portal.</sub>
+</p>
+
+## Try it live
+
+<p align="center">
+  <a href="https://portfolio-nine-ivory-rahtuljfr8.vercel.app/">
+    <img src="docs/assets/qr.webp" alt="QR code for the live portfolio at portfolio-nine-ivory-rahtuljfr8.vercel.app. Scan it to open the site on your phone" width="640">
+  </a>
+  <br>
+  <a href="https://portfolio-nine-ivory-rahtuljfr8.vercel.app/"><b>portfolio-nine-ivory-rahtuljfr8.vercel.app</b></a>
+  <br>
+  <sub>Best on a laptop or desktop with a mouse, but it works on phones too. Want the QR on its own? <a href="docs/assets/qr-code.png">PNG</a> · <a href="docs/assets/qr-code.svg">SVG</a></sub>
+  <br>
+  <sub>Page looks still on your computer? Your device's <i>Reduce motion</i> setting is probably on. Press <b>✦ Motion</b> at the top of the site to turn animations on.</sub>
 </p>
 
 <img src="docs/assets/divider.svg" alt="" width="100%">
@@ -114,7 +132,7 @@ Move your cursor and the particles scatter away from it. **Click the hero** and 
     </td>
     <td valign="top">
       <h3>♿ Accessible</h3>
-      Skip link, focus styles, screen-reader text and full keyboard use. Reduced motion stills the scene, and a CSS background replaces it without WebGL.
+      Skip link, focus styles, screen-reader text and full keyboard use. It respects your device's <i>Reduce motion</i> setting, and a <b>✦ Motion</b> button lets visitors switch animation on or off.
     </td>
     <td valign="top">
       <h3>🔒 Production-ready</h3>

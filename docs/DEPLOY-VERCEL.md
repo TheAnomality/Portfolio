@@ -142,3 +142,5 @@ vercel --prod
 | The form says "Couldn't send that right now" | Check both environment variables, then redeploy. In Vercel go to **Logs**, filter by `/api/contact` and look for `Resend error`. Remember the own-email limit described in Step 4. |
 | Changes don't appear | Check the deployment finished under **Deployments**, then hard-refresh with Ctrl+Shift+R (Cmd+Shift+R on a Mac). |
 | The showreel doesn't play | `public/media/showreel.mp4` must be committed. Re-create it with `npm run showreel:render`. |
+| Animations play on a phone but not on a laptop | The laptop has **Reduce motion** turned on (Windows: Settings → Accessibility → Visual effects → **Animation effects**; macOS: System Settings → Accessibility → Display → **Reduce motion**). The site respects it, shows a notice with **Turn animations on**, and the **✦ Motion** button in the nav overrides it either way. |
+| Only the 3D particles are missing | The browser can't use WebGL, usually because graphics acceleration is off. In Chrome or Edge open Settings → System, turn on **Use graphics acceleration when available**, and restart the browser. `chrome://gpu` shows whether WebGL is available. |

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useSyncExternalStore, type RefObject } from 'react';
 import { useStore, type SceneTarget } from './store';
+import { motionEnabled, useMotionEnabled } from './motion';
 
 export function useMediaQuery(query: string): boolean {
   return useSyncExternalStore(
@@ -13,7 +14,8 @@ export function useMediaQuery(query: string): boolean {
   );
 }
 
-export const useReducedMotion = () => useMediaQuery('(prefers-reduced-motion: reduce)');
+/** true when animations are off (device setting or the visitor's Motion button). */
+export const useReducedMotion = () => !useMotionEnabled();
 export const useCoarsePointer = () => useMediaQuery('(hover: none), (pointer: coarse)');
 
 /* ── Scene sections ──────────────────────────────────────────────────────────
@@ -71,7 +73,7 @@ export function useCountUp(value: number, active: boolean, duration = 1600) {
   useEffect(() => {
     if (!active || started.current) return;
     started.current = true;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || value === 0) {
+    if (!motionEnabled() || value === 0) {
       setDisplay(value);
       return;
     }

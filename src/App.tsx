@@ -5,6 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import { site } from './content/site';
 import { pointer, useStore } from './lib/store';
 import { hasWebGL, useReducedMotion } from './lib/hooks';
+import Notices from './components/Notices';
 import { startSmoothScroll } from './lib/smooth-scroll';
 import Preloader from './components/Preloader';
 import Cursor from './components/Cursor';
@@ -30,10 +31,13 @@ export default function App() {
   const openViewer = useStore((s) => s.openViewer);
   const deepLink = useRef<string | null>(null);
 
-  useEffect(() => startSmoothScroll(), []);
+  // Lenis smooth scrolling, restarted when the Motion preference changes.
+  useEffect(() => startSmoothScroll(), [reduced]);
 
   useEffect(() => {
-    if (!webgl) setSceneReady();
+    if (webgl) return;
+    setSceneReady();
+    console.info('[TheAnomality] 3D background off: WebGL 2 is not available (graphics acceleration may be disabled).');
   }, [webgl, setSceneReady]);
 
   // Shared pointer position for the particles (no React re-renders).
@@ -77,7 +81,7 @@ export default function App() {
   }, [introDone, openViewer]);
 
   return (
-    <MotionConfig reducedMotion="user">
+    <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>
       {webgl ? (
         <Suspense fallback={null}>
           <Scene reduced={reduced} />
@@ -114,6 +118,7 @@ export default function App() {
       </div>
 
       <ProjectViewer />
+      <Notices webgl={webgl} />
 
       {/* Visitor stats and Core Web Vitals in your Vercel dashboard (no cookies). */}
       {import.meta.env.PROD && (

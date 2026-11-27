@@ -1,11 +1,12 @@
 import Lenis from 'lenis';
+import { motionEnabled } from './motion';
 
 let lenis: Lenis | null = null;
 
-export const prefersReducedMotion = () =>
-  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/** true when animations are off (device "Reduce motion" setting or the Motion button). */
+export const prefersReducedMotion = () => typeof window !== 'undefined' && !motionEnabled();
 
-/** Starts Lenis smooth scrolling (skipped when the visitor asks for reduced motion). */
+/** Starts Lenis smooth scrolling (skipped while animations are off). */
 export function startSmoothScroll(): () => void {
   if (prefersReducedMotion()) return () => {};
   lenis = new Lenis({

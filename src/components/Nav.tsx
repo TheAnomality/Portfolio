@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring } fr
 import { site } from '../content/site';
 import { useStore } from '../lib/store';
 import { scrollToTarget } from '../lib/smooth-scroll';
+import { setMotion, useMotionState } from '../lib/motion';
 import { EASE, LogoMark, Magnetic, RollText } from './ui';
 
 export const NAV_LINKS = [
@@ -33,6 +34,34 @@ function useActiveSection() {
     };
   }, []);
   return active;
+}
+
+/** Turns all animation on or off (overrides the device's Reduce motion setting). */
+function MotionToggle({ compact = false }: { compact?: boolean }) {
+  const { enabled } = useMotionState();
+  return (
+    <button
+      type="button"
+      onClick={() => setMotion(!enabled)}
+      aria-pressed={enabled}
+      aria-label={enabled ? 'Animations on. Turn them off' : 'Animations off. Turn them on'}
+      title={enabled ? 'Turn animations off' : 'Turn animations on'}
+      data-cursor={enabled ? 'Calm' : 'Animate'}
+      className={`glass relative z-10 flex h-11 items-center gap-2 rounded-full text-sm text-fg/85 transition-colors hover:text-fg ${compact ? 'w-11 justify-center' : 'px-4'}`}
+    >
+      <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+        {enabled ? (
+          <path d="M8 1.5l1.6 4.2L14 7.3l-4.4 1.6L8 13.5 6.4 8.9 2 7.3l4.4-1.6L8 1.5z" strokeLinejoin="round" fill="var(--accent)" stroke="var(--accent)" />
+        ) : (
+          <>
+            <path d="M8 1.5l1.6 4.2L14 7.3l-4.4 1.6L8 13.5 6.4 8.9 2 7.3l4.4-1.6L8 1.5z" strokeLinejoin="round" />
+            <path d="M2.5 13.5l11-11" strokeLinecap="round" />
+          </>
+        )}
+      </svg>
+      {!compact && <span>Motion {enabled ? 'on' : 'off'}</span>}
+    </button>
+  );
 }
 
 export function ScrollProgress() {
@@ -121,7 +150,13 @@ export default function Nav() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="hidden lg:block">
+              <MotionToggle />
+            </div>
+            <div className="lg:hidden">
+              <MotionToggle compact />
+            </div>
             <div className="hidden sm:block">
               <Magnetic>
                 <a href="#contact" onClick={go('contact')} className="btn btn-primary h-11 text-sm" data-cursor="Say hi">
