@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>TheAnomality · Showreel 2026</title>
+    <!-- GSAP is bundled locally so the render never depends on a CDN. -->
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: 'Unbounded'; src: url('fonts/unbounded.woff2') format('woff2'); font-weight: 200 900; font-display: block; }
+      @font-face { font-family: 'Geist'; src: url('fonts/geist.woff2') format('woff2'); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: 'Geist Mono'; src: url('fonts/geist-mono.woff2') format('woff2'); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: 'Instrument Serif'; src: url('fonts/instrument-serif-italic.woff2') format('woff2'); font-style: italic; font-display: block; }
+
+      :root {
+        --void: #05040a;
+        --fg: #ece9f6;
+        --muted: #a39cbc;
+        --violet: #9d7bff;
+        --lilac: #d9ccff;
+        --cyan: #5ee7ff;
+        --pink: #ff6584;
+        --orange: #f0804f;
+        --yellow: #ffde59;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--void); }
+      #root {
+        position: relative; width: 1920px; height: 1080px; overflow: hidden;
+        background: var(--void); color: var(--fg); font-family: 'Geist', sans-serif;
+      }
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      .inner { position: absolute; inset: 0; }
+      .label { font-family: 'Geist Mono', monospace; font-size: 28px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+      .display { font-family: 'Unbounded', sans-serif; letter-spacing: -0.045em; line-height: 0.86; }
+      .serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+      .mask { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+      .mask > span { display: inline-block; }
+
+      /* Star field (whole film) */
+      #stars i { position: absolute; border-radius: 50%; background: #fff; }
+
+      /* ── Intro ── */
+      #intro .glow {
+        position: absolute; left: 50%; top: 40%; width: 1600px; height: 1100px; transform: translate(-50%, -50%);
+        background: radial-gradient(closest-side, rgba(109, 60, 255, 0.35), rgba(109, 60, 255, 0.08) 55%, transparent 75%);
+      }
+      #hole { position: absolute; left: 960px; top: 380px; width: 0; height: 0; }
+      #hole > * { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); border-radius: 50%; }
+      #disk {
+        width: 1180px; height: 230px;
+        background: radial-gradient(closest-side, transparent 30%, rgba(255, 246, 255, 0.95) 33%, rgba(217, 204, 255, 0.75) 40%, rgba(157, 123, 255, 0.45) 52%, rgba(91, 61, 245, 0.18) 68%, transparent 82%);
+        filter: blur(1px);
+      }
+      #disk-wrap { width: 0; height: 0; }
+      #ring {
+        width: 330px; height: 330px; border: 4px solid #f3ecff;
+        box-shadow: 0 0 40px 8px rgba(157, 123, 255, 0.85), 0 0 120px 30px rgba(94, 231, 255, 0.25), inset 0 0 40px rgba(157, 123, 255, 0.8);
+      }
+      #core { width: 312px; height: 312px; background: #020104; }
+      #disk-front {
+        width: 1180px; height: 230px; clip-path: inset(50% 0 0 0);
+        background: radial-gradient(closest-side, transparent 30%, rgba(255, 246, 255, 0.95) 33%, rgba(217, 204, 255, 0.75) 40%, rgba(157, 123, 255, 0.45) 52%, rgba(91, 61, 245, 0.18) 68%, transparent 82%);
+      }
+      #intro-title { position: absolute; left: 0; right: 0; top: 590px; text-align: center; }
+      #intro-the { font-size: 120px; color: rgba(236, 233, 246, 0.92); display: block; margin-bottom: -18px; }
+      #intro-name { font-size: 228px; font-weight: 400; }
+      #intro-sub { position: absolute; left: 0; right: 0; top: 960px; text-align: center; font-size: 40px; color: var(--muted); }
+      #intro-sub .serif { color: var(--violet); font-size: 52px; }
+      .corner { position: absolute; top: 64px; }
+      .corner.l { left: 80px; } .corner.r { right: 80px; }
+
+      /* ── Browser frames ── */
+      .stage { position: absolute; perspective: 2200px; }
+      .stack { position: absolute; inset: 0; transform-style: preserve-3d; }
+      .frame {
+        position: absolute; width: 980px; border-radius: 22px; overflow: hidden;
+        background: #110e1d; border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: 0 60px 140px -30px rgba(0, 0, 0, 0.9);
+      }
+      .frame.back { filter: brightness(0.45) saturate(0.8); }
+      .bar { height: 46px; display: flex; align-items: center; gap: 10px; padding: 0 18px; background: #0a0814; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+      .bar i { width: 13px; height: 13px; border-radius: 50%; background: #ff5f57; }
+      .bar i:nth-child(2) { background: #febc2e; } .bar i:nth-child(3) { background: #28c840; }
+      .url { margin: 0 auto; font: 17px 'Geist Mono', monospace; color: var(--muted); padding: 6px 22px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; }
+      .screen { position: relative; width: 100%; height: 612px; overflow: hidden; background: #000; }
+      .shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; }
+      .shot.first { opacity: 1; }
+
+      .stat .num { font-family: 'Unbounded', sans-serif; font-weight: 300; font-size: 76px; letter-spacing: -0.04em; line-height: 1; }
+      .stat .cap { margin-top: 12px; font-size: 28px; color: var(--muted); line-height: 1.3; }
+      .stat { border-top: 1px solid rgba(255, 255, 255, 0.14); padding-top: 22px; }
+
+      /* ── Atom ── */
+      #atom { background: radial-gradient(1100px 800px at 72% 45%, #2a160c 0%, #120b08 45%, var(--void) 80%); }
+      #atom .text { position: absolute; left: 110px; top: 190px; width: 720px; }
+      #atom-title { font-size: 300px; font-weight: 600; margin-top: 34px; }
+      #atom .tagline { margin-top: 26px; font-size: 66px; line-height: 1.05; }
+      #atom .stats { margin-top: 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; }
+      #atom .accent { color: var(--orange); }
+      #atom .stage { left: 820px; top: 150px; width: 1060px; height: 780px; }
+      #atom .stack { transform: rotateY(-13deg) rotateX(3deg); }
+      #atom-svg { position: absolute; left: -260px; top: 520px; width: 900px; height: 900px; opacity: 0.18; }
+
+      /* ── AnimeWiki ── */
+      #anime { background: radial-gradient(1100px 800px at 30% 48%, #2b0c1d 0%, #14070f 45%, var(--void) 80%); }
+      #anime .text { position: absolute; right: 110px; top: 150px; width: 780px; text-align: right; }
+      #anime-title { font-size: 210px; font-weight: 600; margin-top: 34px; }
+      #anime-title .wiki { color: var(--pink); }
+      #anime .tagline { margin-top: 26px; font-size: 66px; line-height: 1.05; }
+      #anime .stats { margin-top: 60px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; text-align: left; }
+      #anime .accent { color: var(--pink); }
+      #anime .stage { left: 60px; top: 170px; width: 1060px; height: 780px; }
+      #anime .stack { transform: rotateY(13deg) rotateX(3deg); }
+      #petals i {
+        position: absolute; top: 0; border-radius: 100% 0 100% 0;
+        background: linear-gradient(135deg, #ffe3ec, #ff9ebb 60%, #ff4f86);
+        box-shadow: 0 0 18px rgba(255, 101, 132, 0.45);
+      }
+
+      /* ── Outro ── */
+      #outro { background: radial-gradient(1200px 800px at 50% 50%, #1a1033 0%, #0b0817 50%, var(--void) 85%); }
+      .word {
+        position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);
+        text-align: center; font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 230px; letter-spacing: -0.05em; opacity: 0;
+      }
+      #w5 { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 300px; letter-spacing: -0.02em;
+        background: linear-gradient(90deg, var(--cyan), var(--violet) 45%, var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #end { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      #end svg { width: 150px; height: 150px; }
+      #end-title { margin-top: 36px; font-size: 150px; font-weight: 500; }
+      #end .meta { margin-top: 26px; }
+      #end .meta.big { font-size: 34px; color: var(--fg); font-family: 'Geist', sans-serif; letter-spacing: 0; text-transform: none; }
+
+      /* ── Wipes and fade ── */
+      .wipe { position: absolute; inset: 0; transform: translateX(100%); }
+      #wipe1 { background: linear-gradient(100deg, #6d3cff, #9d7bff 45%, #f0804f); }
+      #wipe2 { background: linear-gradient(100deg, #f0804f, #ff6584 55%, #ffde59); }
+      #wipe3 { background: linear-gradient(100deg, #ff6584, #9d7bff 55%, #5ee7ff); }
+      #fade { position: absolute; inset: 0; background: var(--void); opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="showreel" data-start="0" data-duration="26" data-width="1920" data-height="1080">
+      <div id="stars" class="scene clip" data-start="0" data-duration="26" data-track-index="0"></div>
+
+      <!-- 1 · Intro: the anomaly and the name -->
+      <div id="intro" class="scene clip" data-start="0" data-duration="4.15" data-track-index="1">
+        <div id="intro-inner" class="inner">
+          <div class="glow"></div>
+          <div id="hole">
+            <div id="disk-wrap"><div id="disk"></div></div>
+            <div id="ring"></div>
+            <div id="core"></div>
+            <div id="disk-front"></div>
+          </div>
+          <div id="intro-title">
+            <span id="intro-the" class="serif">The</span>
+            <span id="intro-name" class="display">ANOMALITY</span>
+          </div>
+          <p id="intro-sub">a developer who does <span class="serif">everything</span></p>
+        </div>
+        <p class="label corner l">Showreel · 2026</p>
+        <p class="label corner r">React · Three.js · WebGL</p>
+      </div>
+
+      <!-- 2 · Atom -->
+      <div id="atom" class="scene clip" data-start="4.15" data-duration="7.8" data-track-index="2">
+        <div id="atom-inner" class="inner">
+          <svg id="atom-svg" viewBox="-100 -100 200 200" fill="none" stroke="#f0804f" stroke-width="0.9">
+            <ellipse rx="90" ry="30" />
+            <ellipse rx="90" ry="30" transform="rotate(60)" />
+            <ellipse rx="90" ry="30" transform="rotate(120)" />
+            <circle r="9" fill="#f0804f" stroke="none" />
+          </svg>
+          <div class="text">
+            <p class="label"><span class="accent">01</span> — Design · Physics · Code</p>
+            <h1 id="atom-title" class="display"><span class="split">Atom</span></h1>
+            <p class="tagline serif">An interactive guide<br />to the atom</p>
+            <div class="stats">
+              <div class="stat"><div class="num" id="atom-c1">0</div><div class="cap">live physics simulations</div></div>
+              <div class="stat"><div class="num" id="atom-c2">0</div><div class="cap">elements with full profiles</div></div>
+              <div class="stat"><div class="num" id="atom-c3">0</div><div class="cap">nuclides on one chart</div></div>
+            </div>
+          </div>
+          <div class="stage">
+            <div class="stack">
+              <div class="frame back" style="left: 150px; top: 0; transform-origin: right center;">
+                <div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>/atom/nuclides.html</span></div>
+                <div class="screen"><img class="shot first" src="assets/atom-nuclides.webp" alt="" /></div>
+              </div>
+              <div class="frame back" style="left: 90px; top: 60px;">
+                <div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>/atom/spectra.html</span></div>
+                <div class="screen"><img class="shot first" src="assets/atom-spectra.webp" alt="" /></div>
+              </div>
+              <div class="frame" id="atom-front" style="left: 30px; top: 120px;">
+                <div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>theanomality · /atom/</span></div>
+                <div class="screen">
+                  <img class="shot first s1" src="assets/atom-home.webp" alt="" />
+                  <img class="shot s2" src="assets/atom-orbitals.webp" alt="" />
+                  <img class="shot s3" src="assets/atom-table.webp" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 · AnimeWiki -->
+      <div id="anime" class="scene clip" data-start="11.95" data-duration="7.6" data-track-index="3">
+        <div id="anime-inner" class="inner">
+          <div class="stage">
+            <div class="stack">
+              <div class="frame back" style="left: -60px; top: 0;">
+                <div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>/animewiki/#/browse</span></div>
+                <div class="screen"><img class="shot first" src="assets/animewiki-details.webp" alt="" /></div>
+              </div>
+              <div class="frame" id="anime-front" style="left: 30px; top: 110px;">
+                <div class="bar"><i></i><i></i><i></i><span class="url" data-layout-ignore>theanomality · /animewiki/</span></div>
+                <div class="screen">
+                  <img class="shot first s1" src="assets/animewiki-home.webp" alt="" />
+                  <img class="shot s2" src="assets/animewiki-trending-ring.webp" alt="" />
+                  <img class="shot s3" src="assets/animewiki-details.webp" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text">
+            <p class="label"><span class="accent">02</span> — Design · Frontend · APIs</p>
+            <h1 id="anime-title" class="display"><span class="split">Anime</span><br /><span class="split wiki">Wiki</span></h1>
+            <p class="tagline serif">Anime Hub Dictionary</p>
+            <div class="stats">
+              <div class="stat"><div class="num" id="anime-c1">0</div><div class="cap">public APIs, zero keys</div></div>
+              <div class="stat"><div class="num" id="anime-c2">0</div><div class="cap">lists in one request</div></div>
+              <div class="stat"><div class="num" id="anime-c3">1</div><div class="cap">screenshot finds the scene</div></div>
+            </div>
+          </div>
+        </div>
+        <div id="petals" class="inner"></div>
+      </div>
+
+      <!-- 4 · Outro -->
+      <div id="outro" class="scene clip" data-start="19.55" data-duration="6.45" data-track-index="4">
+        <p class="word" id="w1" style="color: #5ee7ff">3D</p>
+        <p class="word" id="w2" style="color: #f0804f">FRONTEND</p>
+        <p class="word" id="w3" style="color: #ff6584">FULL-STACK</p>
+        <p class="word" id="w4" style="color: #ffde59">MOTION</p>
+        <p class="word" id="w5">everything.</p>
+        <div id="end">
+          <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1"><stop offset="0%" stop-color="#5ee7ff" /><stop offset="50%" stop-color="#9d7bff" /><stop offset="100%" stop-color="#ff6584" /></linearGradient>
+            </defs>
+            <ellipse cx="20" cy="20" rx="17" ry="5.5" fill="none" stroke="url(#g)" stroke-width="1.6" transform="rotate(-18 20 20)" />
+            <circle cx="20" cy="20" r="7.4" fill="#05040a" stroke="#ece9f6" stroke-width="1" />
+          </svg>
+          <h2 id="end-title" class="display"><span class="split">TheAnomality</span></h2>
+          <p class="label meta">Portfolio · 2026</p>
+          <p class="label meta big">Atom · AnimeWiki · and everything in between</p>
+        </div>
+      </div>
+
+      <div id="wipe1" class="wipe clip" data-start="3.6" data-duration="1.2" data-track-index="5"></div>
+      <div id="wipe2" class="wipe clip" data-start="11.4" data-duration="1.2" data-track-index="5"></div>
+      <div id="wipe3" class="wipe clip" data-start="19" data-duration="1.2" data-track-index="5"></div>
+      <div id="fade" class="clip" data-start="25.5" data-duration="0.5" data-track-index="6"></div>
+    </div>
+
+    <script>
+      // Wrap each letter of .split / #intro-name in a mask so it can rise into view.
+      document.querySelectorAll('.split, #intro-name').forEach((el) => {
+        el.innerHTML = [...el.textContent].map((ch) => `<span class="mask"><span>${ch}</span></span>`).join('');
+      });
+
+      // Deterministic randomness (the renderer forbids Math.random()).
+      function seeded(seed) {
+        let s = seed >>> 0;
+        return () => {
+          s = (s + 0x6d2b79f5) >>> 0;
+          let t = s;
+          t = Math.imul(t ^ (t >>> 15), t | 1);
+          t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      const OUT = 'expo.out';
+      const counter = (sel, to, at, dur) => {
+        const el = document.querySelector(sel);
+        const o = { v: 0 };
+        tl.to(o, { v: to, duration: dur, ease: 'power2.out', onUpdate: () => (el.textContent = Math.round(o.v).toLocaleString('en-US')) }, at);
+      };
+      const crossfade = (sel, at) => {
+        tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'power1.inOut' }, at);
+        tl.fromTo(sel, { scale: 1.06 }, { scale: 1, duration: 2.6, ease: 'power1.out' }, at);
+      };
+
+      // ── Star field ──
+      (() => {
+        const rnd = seeded(20261127);
+        const host = document.getElementById('stars');
+        for (let i = 0; i < 170; i++) {
+          const d = document.createElement('i');
+          const size = 1 + Math.pow(rnd(), 3) * 3;
+          d.style.cssText = `left:${(rnd() * 1920).toFixed(1)}px;top:${(rnd() * 1080).toFixed(1)}px;width:${size}px;height:${size}px;opacity:${(0.15 + rnd() * 0.5).toFixed(2)}`;
+          host.appendChild(d);
+          tl.to(d, { opacity: 0.06 + rnd() * 0.25, duration: 1.2 + rnd() * 2.4, repeat: 11, yoyo: true, ease: 'sine.inOut' }, rnd() * 2);
+          tl.to(d, { y: -30 - rnd() * 90, duration: 26, ease: 'none' }, 0);
+        }
+      })();
+
+      // ── 1 · Intro ──
+      tl.fromTo('#hole', { scale: 0.15, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.7, ease: OUT }, 0.05);
+      tl.fromTo('#disk-wrap', { rotation: -26 }, { rotation: -9, duration: 4.15, ease: 'sine.inOut' }, 0);
+      tl.fromTo('#disk-front', { rotation: -26 }, { rotation: -9, duration: 4.15, ease: 'sine.inOut' }, 0);
+      tl.fromTo('#ring', { scale: 0.92 }, { scale: 1.04, duration: 2.0, ease: 'sine.inOut', repeat: 1, yoyo: true }, 0.1);
+      tl.fromTo('#intro .glow', { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 2.2, ease: OUT }, 0);
+      tl.fromTo('#intro-the', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1.0, ease: OUT }, 0.75);
+      tl.fromTo('#intro-name .mask > span', { yPercent: 115 }, { yPercent: 0, duration: 1.15, ease: OUT, stagger: 0.06 }, 0.85);
+      tl.fromTo('#intro-sub', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }, 2.0);
+      tl.fromTo('#intro .corner', { opacity: 0 }, { opacity: 1, duration: 0.8, stagger: 0.1 }, 0.4);
+      tl.fromTo('#intro-inner', { scale: 1 }, { scale: 1.07, duration: 4.15, ease: 'none' }, 0);
+
+      // ── Wipes between scenes ──
+      [['#wipe1', 3.6], ['#wipe2', 11.4], ['#wipe3', 19.0]].forEach(([id, at]) => {
+        tl.fromTo(id, { xPercent: 100 }, { xPercent: 0, duration: 0.5, ease: 'power3.inOut' }, at);
+        tl.to(id, { xPercent: -100, duration: 0.55, ease: 'power3.inOut' }, at + 0.6);
+      });
+
+      // ── 2 · Atom ──
+      const A = 4.15;
+      tl.fromTo('#atom-inner', { scale: 1.05 }, { scale: 1, duration: 7.8, ease: 'none' }, A);
+      tl.fromTo('#atom-svg', { rotation: 0 }, { rotation: 35, duration: 7.8, ease: 'none' }, A);
+      tl.fromTo('#atom .label', { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.8, ease: OUT }, A + 0.4);
+      tl.fromTo('#atom-title .mask > span', { yPercent: 115 }, { yPercent: 0, duration: 1.1, ease: OUT, stagger: 0.07 }, A + 0.45);
+      tl.fromTo('#atom .tagline', { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 1.0, ease: OUT }, A + 0.95);
+      tl.fromTo('#atom .frame', { x: 720, opacity: 0, rotationY: -30 }, { x: 0, opacity: 1, rotationY: 0, duration: 1.5, ease: OUT, stagger: 0.12 }, A + 0.55);
+      tl.fromTo('#atom .stat', { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.8, ease: OUT, stagger: 0.12 }, A + 1.4);
+      counter('#atom-c1', 31, A + 1.5, 1.6);
+      counter('#atom-c2', 118, A + 1.6, 1.7);
+      counter('#atom-c3', 3400, A + 1.7, 1.9);
+      tl.fromTo('#atom-front .s1', { scale: 1.0 }, { scale: 1.07, duration: 3.0, ease: 'none' }, A + 0.6);
+      crossfade('#atom-front .s2', A + 3.1);
+      crossfade('#atom-front .s3', A + 5.4);
+
+      // ── 3 · AnimeWiki ──
+      const B = 11.95;
+      tl.fromTo('#anime-inner', { scale: 1.05 }, { scale: 1, duration: 7.6, ease: 'none' }, B);
+      tl.fromTo('#anime .label', { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.8, ease: OUT }, B + 0.4);
+      tl.fromTo('#anime-title .mask > span', { yPercent: 115 }, { yPercent: 0, duration: 1.1, ease: OUT, stagger: 0.055 }, B + 0.45);
+      tl.fromTo('#anime .tagline', { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 1.0, ease: OUT }, B + 1.0);
+      tl.fromTo('#anime .frame', { x: -720, opacity: 0, rotationY: 30 }, { x: 0, opacity: 1, rotationY: 0, duration: 1.5, ease: OUT, stagger: 0.12 }, B + 0.55);
+      tl.fromTo('#anime .stat', { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.8, ease: OUT, stagger: 0.12 }, B + 1.45);
+      counter('#anime-c1', 3, B + 1.55, 1.0);
+      counter('#anime-c2', 6, B + 1.65, 1.2);
+      tl.fromTo('#anime-front .s1', { scale: 1.0 }, { scale: 1.07, duration: 3.0, ease: 'none' }, B + 0.6);
+      crossfade('#anime-front .s2', B + 3.0);
+      crossfade('#anime-front .s3', B + 5.2);
+      (() => {
+        const rnd = seeded(7);
+        const host = document.getElementById('petals');
+        for (let i = 0; i < 30; i++) {
+          const p = document.createElement('i');
+          const size = 16 + rnd() * 20;
+          p.style.cssText = `left:${(rnd() * 1920).toFixed(0)}px;width:${size.toFixed(0)}px;height:${(size * 0.72).toFixed(0)}px`;
+          host.appendChild(p);
+          const start = B + rnd() * 3.2;
+          const dur = 4.6 + rnd() * 3.2;
+          const r0 = rnd() * 180;
+          tl.fromTo(p, { y: -80, rotation: r0 }, { y: 1160, rotation: r0 + 200 + rnd() * 320, duration: dur, ease: 'none' }, start);
+          tl.fromTo(p, { x: 0 }, { x: (rnd() - 0.5) * 260, duration: dur / 2, ease: 'sine.inOut', repeat: 1, yoyo: true }, start);
+        }
+      })();
+
+      // ── 4 · Outro ──
+      const O = 19.55;
+      ['#w1', '#w2', '#w3', '#w4'].forEach((w, i) => {
+        const t = O + 0.2 + i * 0.5;
+        tl.fromTo(w, { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.16, ease: 'power2.out' }, t);
+        tl.to(w, { opacity: 0, scale: 0.9, duration: 0.12, ease: 'power2.in' }, t + 0.42);
+      });
+      tl.fromTo('#w5', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.7, ease: OUT }, O + 2.3);
+      tl.to('#w5', { opacity: 0, y: -50, duration: 0.45, ease: 'power2.in' }, O + 3.3);
+      tl.set('#end', { autoAlpha: 0 }, 0);
+      tl.set('#end', { autoAlpha: 1 }, O + 3.45);
+      tl.fromTo('#end .mark', { scale: 0, opacity: 0, rotation: -90 }, { scale: 1, opacity: 1, rotation: 0, duration: 1.0, ease: OUT }, O + 3.5);
+      tl.fromTo('#end-title .mask > span', { yPercent: 115 }, { yPercent: 0, duration: 0.9, ease: OUT, stagger: 0.035 }, O + 3.55);
+      tl.fromTo('#end .meta', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: OUT, stagger: 0.12 }, O + 3.85);
+      tl.fromTo('#fade', { opacity: 0 }, { opacity: 1, duration: 0.45, ease: 'none' }, 25.55);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines['showreel'] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

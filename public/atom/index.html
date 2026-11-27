@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atom: an interactive guide to the atom</title>
+  <meta name="description" content="An interactive guide to atoms: their scale, structure, quantum behaviour, orbitals, nuclei and bonds, with live simulations and real data from NIST, the IAEA and PubChem.">
+  <meta property="og:title" content="Atom: an interactive guide">
+  <meta property="og:description" content="What atoms really are, how they work, and how we know, with simulations computed from real physics.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://theanomality.github.io/Atom-Anomality/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f5f2eb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121211" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <script type="importmap">{"imports":{"three":"./assets/vendor/three.module.min.js","three/addons/":"./assets/vendor/addons/"}}</script>
+  <script type="module" src="assets/js/site.js"></script>
+</head>
+<body>
+<!-- header:start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="wordmark" href="./" aria-label="Atom, home">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><g transform="rotate(32 13 13)"><path d="M13 13C8.7 9.6 8.4 2.3 13 2.3s4.3 7.3 0 10.7z" fill="var(--accent)"/><path d="M13 13c-4.3 3.4-4.6 10.7 0 10.7s4.3-7.3 0-10.7z" fill="currentColor"/></g><circle cx="13" cy="13" r="1.9" fill="var(--bg)" stroke="currentColor" stroke-width="1.2"/></svg>
+      <span>Atom</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <div class="nav-menu" data-menu>
+        <button class="navlink" type="button" aria-expanded="false" aria-controls="chapters-panel">Chapters</button>
+        <div class="nav-menu__panel" id="chapters-panel">
+          <a href="scale.html"><span class="num">01</span><span class="t">Smaller than small</span><span class="d">How tiny atoms are, and what they are made of</span></a>
+          <a href="discovery.html"><span class="num">02</span><span class="t">How we found out</span><span class="d">Two thousand years of guesses, and the experiments that settled them</span></a>
+          <a href="quantum.html"><span class="num">03</span><span class="t">Quantum leaps</span><span class="d">Why electrons sit on energy ladders, and how that makes light</span></a>
+          <a href="orbitals.html"><span class="num">04</span><span class="t">Orbitals</span><span class="d">The true shapes of electron clouds, computed live</span></a>
+          <a href="periodic.html"><span class="num">05</span><span class="t">Building the table</span><span class="d">How filling orbitals gives the periodic table its shape</span></a>
+          <a href="nucleus.html"><span class="num">06</span><span class="t">The nucleus</span><span class="d">Isotopes, the strong force, radioactivity and E = mc²</span></a>
+          <a href="bonding.html"><span class="num">07</span><span class="t">Atoms together</span><span class="d">Why atoms bond, and what a bond actually is</span></a>
+        </div>
+      </div>
+      <a class="navlink" href="table.html">Periodic table</a>
+      <a class="navlink navlink--wide" href="nuclides.html">Nuclides</a>
+      <a class="navlink navlink--wide" href="spectra.html">Spectra</a>
+      <a class="navlink navlink--wide" href="build.html">Build an atom</a>
+    </nav>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-sheet">Menu</button>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode"></button>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+<!-- header:end -->
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__canvas" data-figure="hero-cloud" data-eager></div>
+    <div class="hero__inner">
+      <p class="kicker">An interactive guide</p>
+      <h1 id="hero-title">The Atom</h1>
+      <p class="hero__dek">There are 118 kinds of atom, and everything you have ever touched is built from them. This guide shows what they are really like, with simulations computed from the laws of physics and data from the laboratories that measure them.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="scale.html">Start reading</a>
+        <a class="btn" href="table.html">Open the periodic table</a>
+      </div>
+    </div>
+    <p class="hero-label" data-hero-label aria-live="polite"></p>
+  </section>
+
+  <div class="prose home-intro">
+    <p class="lede">Atoms are usually drawn as tiny solar systems, with electrons circling a nucleus like planets around a sun. That picture is more than a century out of date.</p>
+    <p>A real electron has no orbit. It exists as a standing wave, a cloud of probability with a precise and often beautiful shape, like the one drifting above. A real nucleus is tens of thousands of times narrower than its atom, yet carries almost all of its mass. The rules that govern these two parts explain the colour of a sodium street lamp, the layout of the periodic table, and how the Sun shines.</p>
+    <p>The chapters below build on one another, but each stands on its own. Nearly every figure is a small simulation: drag it, change its settings and watch what happens. Where you see a number, it is a measured value from the databases of <a href="https://physics.nist.gov/asd">NIST</a>, the <a href="https://www-nds.iaea.org/">IAEA</a> and <a href="https://pubchem.ncbi.nlm.nih.gov/">PubChem</a>, or it is calculated in your browser from fundamental constants.</p>
+  </div>
+
+  <section class="home-section" aria-labelledby="contents-title">
+    <div class="home-section__head"><h2 id="contents-title">Contents</h2><p>Seven chapters, about two hours in total</p></div>
+    <ol class="toc">
+      <li><a href="scale.html">
+        <span class="n">1</span>
+        <span><span class="t">Smaller than small</span><span class="d">Zoom from a grain of salt to a quark. How small atoms are, how empty they are, and the three particles they are made of.</span><span class="m">Scale · particles · mass</span></span>
+        <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="26" cy="26" r="22"/><circle cx="35" cy="35" r="10"/><circle cx="40" cy="40" r="4"/><circle cx="41.6" cy="41.6" r="1.1" fill="currentColor"/></svg>
+      </a></li>
+      <li><a href="discovery.html">
+        <span class="n">2</span>
+        <span><span class="t">How we found out</span><span class="d">From Greek philosophy to Rutherford’s gold foil. Run the experiment that revealed the nucleus.</span><span class="m">Models · experiments · evidence</span></span>
+        <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M3 9h50M3 19c18 0 27-1 50-9M3 27.5h19c9 0 9-8 4-12L13 4M3 36c18 0 27 1 50 9M3 47h50"/><circle cx="31" cy="27.5" r="2.4" fill="currentColor" stroke="none"/></svg>
+      </a></li>
+      <li><a href="quantum.html">
+        <span class="n">3</span>
+        <span><span class="t">Quantum leaps</span><span class="d">Why electrons can only hold certain energies, and how jumping between them paints every colour in a neon sign.</span><span class="m">Waves · energy levels · spectra</span></span>
+        <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M6 8h30M6 13h30M6 21h30M6 48h30"/><path d="M17 22v24M13.5 42.5 17 46.5l3.5-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 33c1.8-3.4 3.6-3.4 5.4 0s3.6 3.4 5.4 0 3.6-3.4 5.4 0 3.6 3.4 5.4 0" stroke-linecap="round"/><path d="m47 30 4 3-4 3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a></li>
+      <li><a href="orbitals.html">
+        <span class="n">4</span>
+        <span><span class="t">Orbitals</span><span class="d">The true shapes of electron clouds, calculated exactly from the Schrödinger equation and drawn in 3D.</span><span class="m">Wavefunctions · nodes · quantum numbers</span></span>
+        <svg viewBox="0 0 56 56" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><g transform="rotate(45 28 28)"><path d="M28 28c-5.5-5.2-6-19 0-19s5.5 13.8 0 19z" fill="currentColor" fill-opacity=".22"/><path d="M28 28c5.5 5.2 6 19 0 19s-5.5-13.8 0-19z" fill="currentColor" fill-opacity=".22"/><path d="M28 28c5.2-5.5 19-6 19 0s-13.8 5.5-19 0z" fill="none"/><path d="M28 28c-5.2 5.5-19 6-19 0s13.8-5.5 19 0z" fill="none"/></g></svg>
+      </a></li>
+      <li><a href="periodic.html">
+        <span class="n">5</span>
+        <span><span class="t">Building the table</span><span class="d">Add electrons one at a time and watch the periodic table assemble itself from the rules of quantum mechanics.</span><span class="m">Configurations · blocks · trends</span></span>
+        <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M2.8 13h2.8v3h2.8v6h28v-6h14v-3h2.8v21H2.8z" stroke-linejoin="round"/><path d="M8.4 16v18M36.4 16v18" stroke-opacity=".5"/><rect x="8.4" y="37.5" width="39.2" height="6"/></svg>
+      </a></li>
+      <li><a href="nucleus.html">
+        <span class="n">6</span>
+        <span><span class="t">The nucleus</span><span class="d">Isotopes, the strong force and radioactive decay, mapped across nearly 3,400 known nuclei.</span><span class="m">Binding energy · decay · E = mc²</span></span>
+        <svg viewBox="0 0 56 56" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="28" cy="28" r="6" fill="currentColor"/><circle cx="40" cy="28" r="6" fill="none"/><circle cx="16" cy="28" r="6" fill="none"/><circle cx="22" cy="17.6" r="6" fill="currentColor"/><circle cx="34" cy="17.6" r="6" fill="none"/><circle cx="22" cy="38.4" r="6" fill="none"/><circle cx="34" cy="38.4" r="6" fill="currentColor"/></svg>
+      </a></li>
+      <li><a href="bonding.html">
+        <span class="n">7</span>
+        <span><span class="t">Atoms together</span><span class="d">What a chemical bond really is: electron waves overlapping between two nuclei, with a measurable energy and length.</span><span class="m">Covalent · ionic · polarity</span></span>
+        <svg viewBox="0 0 56 56" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="21" cy="28" r="14" fill="none"/><circle cx="35" cy="28" r="14" fill="none"/><path d="M28 15.9a14 14 0 0 1 0 24.2 14 14 0 0 1 0-24.2z" fill="currentColor" fill-opacity=".25" stroke="none"/><circle cx="21" cy="28" r="1.8" fill="currentColor" stroke="none"/><circle cx="35" cy="28" r="1.8" fill="currentColor" stroke="none"/></svg>
+      </a></li>
+    </ol>
+  </section>
+
+  <section class="home-section" aria-labelledby="tools-title">
+    <div class="home-section__head"><h2 id="tools-title">Tools</h2><p>Reference instruments built on the same data</p></div>
+    <div class="tools">
+      <a class="tool" href="table.html">
+        <div class="tool__art"><img src="assets/img/tool-table.webp" alt="" width="640" height="360" loading="lazy"></div>
+        <div class="tool__body"><div class="tool__t">Periodic table <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="tool__d">All 118 elements, with property maps, electron configurations, isotopes, spectra and live descriptions.</div></div>
+      </a>
+      <a class="tool" href="nuclides.html">
+        <div class="tool__art"><img src="assets/img/tool-nuclides.webp" alt="" width="640" height="360" loading="lazy"></div>
+        <div class="tool__body"><div class="tool__t">Chart of nuclides <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="tool__d">Every known nucleus by proton and neutron number, with half-lives, decay modes and decay chains.</div></div>
+      </a>
+      <a class="tool" href="spectra.html">
+        <div class="tool__art"><img src="assets/img/tool-spectra.webp" alt="" width="640" height="360" loading="lazy"></div>
+        <div class="tool__body"><div class="tool__t">Atomic spectra <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="tool__d">The light fingerprints of 98 elements, from NIST’s Atomic Spectra Database. Compare them, or identify a mystery spectrum.</div></div>
+      </a>
+      <a class="tool" href="build.html">
+        <div class="tool__art"><img src="assets/img/tool-build.webp" alt="" width="640" height="360" loading="lazy"></div>
+        <div class="tool__body"><div class="tool__t">Build an atom <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="tool__d">Add protons, neutrons and electrons, then find out what you made and whether it would survive.</div></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="home-section" aria-labelledby="numbers-title">
+    <div class="home-section__head"><h2 id="numbers-title">Six numbers worth knowing</h2><p>Each is explained in the chapters</p></div>
+    <div class="numbers">
+      <div class="number">
+        <div class="number__v">0.1<small>nanometres</small></div>
+        <p>The typical width of an atom. Ten million of them side by side would make a line one millimetre long.</p>
+        <a href="scale.html">Chapter 1</a>
+      </div>
+      <div class="number">
+        <div class="number__v">63,000<small>×</small></div>
+        <p>How much wider a hydrogen atom is than its nucleus, a single proton. Blown up to the size of a football pitch, the atom would hold a nucleus under 2 mm across.</p>
+        <a href="scale.html#empty">Chapter 1</a>
+      </div>
+      <div class="number">
+        <div class="number__v">99.97<small>%</small></div>
+        <p>The share of a carbon atom’s mass carried by its nucleus. The six electrons, which give the atom its size, add almost nothing to its weight.</p>
+        <a href="scale.html#parts">Chapter 1</a>
+      </div>
+      <div class="number">
+        <div class="number__v">1,836<small>×</small></div>
+        <p>How much heavier a proton is than an electron. This mismatch is why chemists can treat nuclei as nearly fixed points while electrons do all the moving.</p>
+        <a href="scale.html#parts">Chapter 1</a>
+      </div>
+      <div class="number">
+        <div class="number__v">13.6<small>eV</small></div>
+        <p>The energy needed to pull the electron out of a hydrogen atom: about five times what a photon of visible light carries.</p>
+        <a href="quantum.html">Chapter 3</a>
+      </div>
+      <div class="number">
+        <div class="number__v">1<small>%</small></div>
+        <p>Roughly how much of a proton’s mass comes from the three quarks inside it. The other 99% is energy of the strong force that binds them, as E = mc² allows.</p>
+        <a href="scale.html#quarks">Chapter 1</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <h2>About</h2>
+      <p>A free, interactive guide to the atom. Every number on this site comes from a cited measurement or is computed from physics in your browser. Nothing is made up for effect.</p>
+      <p><a href="https://github.com/TheAnomality/Atom-Anomality">Source code on GitHub</a></p>
+    </div>
+    <div>
+      <h2>Data</h2>
+      <ul>
+        <li><a href="https://pubchem.ncbi.nlm.nih.gov/periodic-table/">PubChem</a>: element properties and descriptions</li>
+        <li><a href="https://physics.nist.gov/asd">NIST Atomic Spectra Database</a>: spectral lines, configurations, ionisation energies</li>
+        <li><a href="https://www-nds.iaea.org/relnsd/vcharthtml/VChartHTML.html">IAEA LiveChart of Nuclides</a>: half-lives, decay modes, masses</li>
+        <li><a href="https://www.mediawiki.org/wiki/API:REST_API">Wikipedia REST API</a>: element summaries</li>
+        <li><a href="https://physics.nist.gov/cuu/Constants/">CODATA 2018</a>: physical constants</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Explore</h2>
+      <ul>
+        <li><a href="table.html">Periodic table</a></li>
+        <li><a href="nuclides.html">Chart of nuclides</a></li>
+        <li><a href="spectra.html">Atomic spectra</a></li>
+        <li><a href="build.html">Build an atom</a></li>
+        <li><a href="orbitals.html#explorer">Orbital explorer</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<!-- footer:end -->
+</body>
+</html>

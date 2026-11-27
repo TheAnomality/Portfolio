@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How we found out: the discovery of the atom · Atom</title>
+  <meta name="description" content="From Democritus to quantum mechanics: the models of the atom and the experiments that overturned them. Run Rutherford’s gold-foil experiment and watch an STM image atoms.">
+  <meta property="og:title" content="How we found out: the discovery of the atom">
+  <meta property="og:description" content="Run Rutherford’s gold-foil experiment and see how each model of the atom fell.">
+  <meta property="og:image" content="https://theanomality.github.io/Atom-Anomality/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f5f2eb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121211" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/figures.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <script type="importmap">{"imports":{"three":"./assets/vendor/three.module.min.js","three/addons/":"./assets/vendor/addons/"}}</script>
+  <script type="module" src="assets/js/site.js"></script>
+</head>
+<body>
+<!-- header:start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="wordmark" href="./" aria-label="Atom, home">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><g transform="rotate(32 13 13)"><path d="M13 13C8.7 9.6 8.4 2.3 13 2.3s4.3 7.3 0 10.7z" fill="var(--accent)"/><path d="M13 13c-4.3 3.4-4.6 10.7 0 10.7s4.3-7.3 0-10.7z" fill="currentColor"/></g><circle cx="13" cy="13" r="1.9" fill="var(--bg)" stroke="currentColor" stroke-width="1.2"/></svg>
+      <span>Atom</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <div class="nav-menu" data-menu>
+        <button class="navlink" type="button" aria-expanded="false" aria-controls="chapters-panel">Chapters</button>
+        <div class="nav-menu__panel" id="chapters-panel">
+          <a href="scale.html"><span class="num">01</span><span class="t">Smaller than small</span><span class="d">How tiny atoms are, and what they are made of</span></a>
+          <a href="discovery.html" aria-current="page"><span class="num">02</span><span class="t">How we found out</span><span class="d">Two thousand years of guesses, and the experiments that settled them</span></a>
+          <a href="quantum.html"><span class="num">03</span><span class="t">Quantum leaps</span><span class="d">Why electrons sit on energy ladders, and how that makes light</span></a>
+          <a href="orbitals.html"><span class="num">04</span><span class="t">Orbitals</span><span class="d">The true shapes of electron clouds, computed live</span></a>
+          <a href="periodic.html"><span class="num">05</span><span class="t">Building the table</span><span class="d">How filling orbitals gives the periodic table its shape</span></a>
+          <a href="nucleus.html"><span class="num">06</span><span class="t">The nucleus</span><span class="d">Isotopes, the strong force, radioactivity and E = mc²</span></a>
+          <a href="bonding.html"><span class="num">07</span><span class="t">Atoms together</span><span class="d">Why atoms bond, and what a bond actually is</span></a>
+        </div>
+      </div>
+      <a class="navlink" href="table.html">Periodic table</a>
+      <a class="navlink navlink--wide" href="nuclides.html">Nuclides</a>
+      <a class="navlink navlink--wide" href="spectra.html">Spectra</a>
+      <a class="navlink navlink--wide" href="build.html">Build an atom</a>
+    </nav>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-sheet">Menu</button>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode"></button>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+<!-- header:end -->
+
+<main id="main" data-progress>
+  <header class="chapter-head">
+    <p class="kicker">Chapter 2</p>
+    <h1>How we found out</h1>
+    <p class="dek">For two thousand years atoms were an idea. Then, in about thirty years, they were weighed, measured, split open and described by a new kind of physics. A story of models and the experiments that broke them.</p>
+  </header>
+
+  <article class="prose">
+    <p class="lede">As late as 1900, some respected scientists argued that atoms might be nothing more than a convenient fiction, a bookkeeping device for chemists. Nobody had seen one, and nobody knew what one looked like inside. What followed is one of the great detective stories in science. Each picture of the atom explained the evidence of its day, and each was overturned by an experiment it could not explain.</p>
+
+    <figure class="wide">
+      <div class="fig" data-figure="models-timeline"></div>
+      <figcaption><b>Figure 2.1</b> Five models of the atom. Select one to see what it claimed, what it got right, and what finally broke it.</figcaption>
+    </figure>
+
+    <h2><span class="sec">2.1</span>An old idea</h2>
+    <p>In the fifth century BCE the Greek philosophers Leucippus and Democritus argued that if you kept cutting matter into smaller pieces you would eventually reach pieces that could not be cut: <em>atomos</em>, “uncuttable”. It was a brilliant guess, but only a guess. There were no experiments, and for most of the next two thousand years the idea was a minority opinion.</p>
+
+    <h2><span class="sec">2.2</span>Atoms with weights</h2>
+    <p>The idea became science in 1808, when the English chemist John Dalton noticed that elements always combine in simple, fixed ratios by mass. Water always contains eight grams of oxygen for every gram of hydrogen. Carbon forms two gases with oxygen, and the masses of oxygen per gram of carbon in them are in a ratio of exactly two to one. Dalton’s explanation was that each element consists of identical atoms with a characteristic weight, and that compounds are atoms joined in whole-number combinations.</p>
+    <p>Doubts lingered for another century. They were finally settled by a puzzle under the microscope: pollen grains suspended in water jiggle about endlessly. In 1905 Albert Einstein showed that this Brownian motion is the grains being jostled by invisible molecules, and predicted how far they should wander. In 1908 Jean Perrin measured the jiggling, worked backwards to the size of molecules, and obtained Avogadro’s number. Even the most determined sceptics accepted that atoms were real.</p>
+
+    <h2><span class="sec">2.3</span>Atoms have parts</h2>
+    <p>Meanwhile, in 1897, J. J. Thomson at Cambridge had been studying cathode rays, the glowing beams inside evacuated glass tubes. By bending them with electric and magnetic fields he showed they were streams of negatively charged particles more than a thousand times lighter than a hydrogen atom, and that every metal he tried produced the same particles. He had discovered the electron, and with it the fact that atoms are not uncuttable after all.</p>
+    <p>Atoms are electrically neutral, so the electrons must be balanced by positive charge somewhere. Thomson proposed in 1904 that the positive charge was spread throughout the atom like a pudding, with the electrons embedded in it like plums. It was a reasonable guess. It was also wrong.</p>
+
+    <h2><span class="sec">2.4</span>The gold foil</h2>
+    <p>Ernest Rutherford, working in Manchester, had a new kind of probe: alpha particles, fast and heavy positively charged particles shot out by radioactive elements. In 1909 he asked his colleague Hans Geiger and an undergraduate, Ernest Marsden, to fire them at gold foil less than a thousandth of a millimetre thick and record where they went, by watching for tiny flashes of light on a screen in a darkened room.</p>
+    <p>Almost all the alpha particles went straight through, as the pudding model predicted. But Geiger and Marsden noticed that about one in every eight thousand bounced back towards the source. Rutherford later recalled:</p>
+    <blockquote>It was quite the most incredible event that has ever happened to me in my life. It was almost as incredible as if you fired a 15-inch shell at a piece of tissue paper and it came back and hit you.<cite>Ernest Rutherford, recalling the experiment in a lecture in 1936</cite></blockquote>
+
+    <figure class="wide">
+      <div class="fig" data-figure="rutherford"></div>
+      <figcaption><b>Figure 2.2</b> The gold-foil experiment, simulated. Left: alpha particles fired at a foil 1 µm thick, with every detection recorded around a circular screen. Right: the paths of alpha particles near the centre of one gold atom. Switch models to compare what the plum-pudding atom predicts. Scattering angles are drawn from Rutherford’s 1911 formula; small extra deflections from the foil’s other atoms are included.</figcaption>
+    </figure>
+
+    <p>Spread-out charge can only nudge a fast alpha particle by a tiny fraction of a degree. To turn one right round, the atom’s positive charge, and almost all its mass, must be packed into a minute central region where the electric field is enormous. Rutherford worked out how often such a <em>nucleus</em> would deflect alpha particles through each angle, and in 1913 Geiger and Marsden confirmed his formula in detail. The atom was mostly empty, with a tiny heavy heart.</p>
+    <aside class="note">Try a low energy with the nuclear model. Slower alpha particles are turned back from farther away, so more of them scatter widely. Rutherford’s formula predicts exactly how strongly, and experiments matched it.</aside>
+    <p>The same year, a young physicist in Rutherford’s group, Henry Moseley, measured the X-rays given off by dozens of elements and found that their frequencies climbed in perfect steps from one element to the next. The step was one unit of nuclear charge. Each element’s place in the periodic table is fixed not by its weight but by the number of protons in its nucleus, its atomic number. Moseley was killed at Gallipoli in 1915, aged 27.</p>
+
+    <h2><span class="sec">2.5</span>The quantum atom</h2>
+    <p>Rutherford’s atom had a fatal flaw. Electrons circling a nucleus should radiate their energy away and spiral inwards almost instantly. In 1913 Niels Bohr, who had worked with Rutherford, proposed a radical fix: electrons can only move on certain orbits, and lose energy only by jumping between them. It was an unexplained rule, but it reproduced hydrogen’s spectrum perfectly. Within thirteen years, Louis de Broglie, Werner Heisenberg and Erwin Schrödinger had replaced Bohr’s orbits with quantum mechanics, in which electrons are waves (<a href="quantum.html">Chapter 3</a> and <a href="orbitals.html">Chapter 4</a>).</p>
+    <p>One piece remained. Nuclei weighed roughly twice as much as their protons could account for. In 1932 James Chadwick, another of Rutherford’s colleagues, identified the missing mass: a neutral particle with almost the same mass as the proton, the neutron (<a href="nucleus.html">Chapter 6</a>).</p>
+
+    <h2><span class="sec">2.6</span>Seeing atoms</h2>
+    <p>All of this was worked out without anyone seeing an atom. The first images of individual atoms came in 1955, when Erwin Müller and Kanwar Bahadur used a field ion microscope to photograph the atoms at the tip of a tungsten needle. In 1981 Gerd Binnig and Heinrich Rohrer at IBM in Zurich built the scanning tunnelling microscope, which feels its way across a surface with a needle one atom sharp. It earned them the 1986 Nobel Prize, and it can also move atoms: in 1989 Don Eigler and Erhard Schweizer spelled “IBM” with 35 xenon atoms.</p>
+
+    <figure class="wide">
+      <div class="fig" data-figure="stm"></div>
+      <figcaption><b>Figure 2.3</b> A scanning tunnelling microscope image of a “quantum corral”, simulated: 48 iron atoms placed one by one in a ring 14 nm across on a copper surface, as Crommie, Lutz and Eigler did in 1993. The ripples inside are electrons on the copper surface, trapped by the ring into standing waves, the same physics as <a href="quantum.html">Figure 3.2</a>, made visible.</figcaption>
+    </figure>
+
+    <p>Today, electron microscopes routinely resolve individual atoms, and in 2021 a technique called electron ptychography reached a resolution of about 20 picometres, limited mainly by the atoms’ own thermal jiggling. The fiction of 1900 is now something we can photograph, count and rearrange one at a time.</p>
+
+    <section class="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">Sources and further reading</h2>
+      <ol>
+        <li>J. Dalton, <em>A New System of Chemical Philosophy</em>, Manchester (1808).</li>
+        <li>J. Perrin, “Mouvement brownien et réalité moléculaire”, <em>Annales de Chimie et de Physique</em> 18, 5 (1909).</li>
+        <li>H. Geiger and E. Marsden, “On a diffuse reflection of the α-particles”, <em>Proceedings of the Royal Society A</em> 82, 495 (1909).</li>
+        <li>E. Rutherford, “The scattering of α and β particles by matter and the structure of the atom”, <em>Philosophical Magazine</em> 21, 669 (1911).</li>
+        <li>H. G. J. Moseley, “The high-frequency spectra of the elements”, <em>Philosophical Magazine</em> 26, 1024 (1913).</li>
+        <li>D. M. Eigler and E. K. Schweizer, “Positioning single atoms with a scanning tunnelling microscope”, <em>Nature</em> 344, 524 (1990).</li>
+        <li>M. F. Crommie, C. P. Lutz and D. M. Eigler, “Confinement of electrons to quantum corrals on a metal surface”, <em>Science</em> 262, 218 (1993).</li>
+        <li>Z. Chen et al., “Electron ptychography achieves atomic-resolution limits set by lattice vibrations”, <em>Science</em> 372, 826 (2021).</li>
+      </ol>
+    </section>
+  </article>
+
+  <nav class="chapter-nav" aria-label="Chapters">
+    <a class="prev" href="scale.html"><span class="dir">← Chapter 1</span><span class="t">Smaller than small</span></a>
+    <a class="next" href="quantum.html"><span class="dir">Chapter 3 →</span><span class="t">Quantum leaps</span></a>
+  </nav>
+</main>
+
+<!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <h2>About</h2>
+      <p>A free, interactive guide to the atom. Every number on this site comes from a cited measurement or is computed from physics in your browser. Nothing is made up for effect.</p>
+      <p><a href="https://github.com/TheAnomality/Atom-Anomality">Source code on GitHub</a></p>
+    </div>
+    <div>
+      <h2>Data</h2>
+      <ul>
+        <li><a href="https://pubchem.ncbi.nlm.nih.gov/periodic-table/">PubChem</a>: element properties and descriptions</li>
+        <li><a href="https://physics.nist.gov/asd">NIST Atomic Spectra Database</a>: spectral lines, configurations, ionisation energies</li>
+        <li><a href="https://www-nds.iaea.org/relnsd/vcharthtml/VChartHTML.html">IAEA LiveChart of Nuclides</a>: half-lives, decay modes, masses</li>
+        <li><a href="https://www.mediawiki.org/wiki/API:REST_API">Wikipedia REST API</a>: element summaries</li>
+        <li><a href="https://physics.nist.gov/cuu/Constants/">CODATA 2018</a>: physical constants</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Explore</h2>
+      <ul>
+        <li><a href="table.html">Periodic table</a></li>
+        <li><a href="nuclides.html">Chart of nuclides</a></li>
+        <li><a href="spectra.html">Atomic spectra</a></li>
+        <li><a href="build.html">Build an atom</a></li>
+        <li><a href="orbitals.html#explorer">Orbital explorer</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<!-- footer:end -->
+</body>
+</html>

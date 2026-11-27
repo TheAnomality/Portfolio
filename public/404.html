@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lost in the void · TheAnomality</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 2rem 1rem;
+      background:
+        radial-gradient(50vmax 50vmax at 70% 30%, rgb(157 123 255 / 0.18), transparent 60%),
+        radial-gradient(40vmax 40vmax at 20% 80%, rgb(255 101 132 / 0.08), transparent 60%),
+        #05040a;
+      color: #ece9f6;
+      font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hole {
+      width: 140px; height: 140px; margin: 0 auto 2.5rem; border-radius: 50%;
+      background: #05040a;
+      box-shadow: 0 0 0 2px #d9ccff, 0 0 40px 10px rgb(157 123 255 / 0.6), 0 0 120px 40px rgb(94 231 255 / 0.15);
+      position: relative;
+    }
+    .hole::after {
+      content: ""; position: absolute; inset: 40% -60%; border-radius: 50%;
+      border: 2px solid transparent; border-top-color: #9d7bff; border-bottom-color: #ff6584;
+      animation: spin 6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    h1 { font-size: clamp(3rem, 12vw, 7rem); line-height: 1; letter-spacing: -0.05em; font-weight: 600; }
+    p { color: #a39cbc; margin-top: 1rem; }
+    a {
+      display: inline-block; margin-top: 2rem; padding: 0.9rem 1.5rem; border-radius: 999px;
+      background: #ece9f6; color: #05040a; text-decoration: none; font-weight: 500;
+    }
+    a:hover { background: #9d7bff; color: #fff; }
+    @media (prefers-reduced-motion: reduce) { .hole::after { animation: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="hole" aria-hidden="true"></div>
+    <h1>404</h1>
+    <p>This page fell into the singularity.</p>
+    <a href="/">Back to the portfolio</a>
+  </main>
+</body>
+</html>

@@ -1,0 +1,330 @@
+@import 'tailwindcss';
+
+/* ───────────────────────────── Design tokens ───────────────────────────── */
+@theme {
+  --color-void: #05040a;
+  --color-ink: #0a0814;
+  --color-panel: #110e1d;
+  --color-panel-2: #171329;
+  --color-line: rgb(255 255 255 / 0.08);
+  --color-line-strong: rgb(255 255 255 / 0.16);
+  --color-fg: #ece9f6;
+  --color-muted: #a39cbc;
+  --color-dim: #6f6889;
+  --color-violet: #9d7bff;
+  --color-violet-bright: #c9b8ff;
+  --color-cyan: #5ee7ff;
+  --color-pink: #ff6584;
+  --color-orange: #f0804f;
+  --color-yellow: #ffde59;
+
+  --font-display: 'Unbounded Variable', 'Unbounded', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Geist Variable', 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+  --animate-scroll-line: scroll-line 2.2s var(--ease-in-out-quart) infinite;
+
+  @keyframes marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, currentColor 55%, transparent); }
+    50% { box-shadow: 0 0 0 6px transparent; }
+  }
+  @keyframes scroll-line {
+    0% { transform: scaleY(0); transform-origin: top; }
+    45% { transform: scaleY(1); transform-origin: top; }
+    55% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+}
+
+/* ───────────────────────────── Base ───────────────────────────── */
+@layer base {
+  :root {
+    /* The accent follows the section on screen (set from JS). */
+    --accent: #9d7bff;
+    --accent-2: #5ee7ff;
+    --gutter: clamp(1rem, 4vw, 3.5rem);
+    color-scheme: dark;
+  }
+
+  html {
+    background: var(--color-void);
+    color: var(--color-fg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+    scrollbar-color: color-mix(in oklab, var(--accent) 45%, transparent) transparent;
+    scrollbar-width: thin;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-void);
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--accent) 70%, transparent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  img, video { display: block; max-width: 100%; }
+
+  /* Lenis smooth scrolling */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: clip; }
+}
+
+/* ───────────────────────────── Components ───────────────────────────── */
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* Small uppercase mono labels, e.g. "(01) Work" */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .accent-text { color: var(--accent); }
+
+  .serif-accent {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px color-mix(in oklab, var(--color-fg) 35%, transparent);
+  }
+
+  .glass {
+    background: color-mix(in oklab, var(--color-panel) 72%, transparent);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid var(--color-line);
+  }
+
+  /* Buttons */
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    height: 3.1rem;
+    padding: 0 1.4rem;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    isolation: isolate;
+    overflow: hidden;
+    transition: color 0.4s var(--ease-out-expo), border-color 0.4s var(--ease-out-expo), background-color 0.4s;
+  }
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    transform: translateY(102%);
+    transition: transform 0.55s var(--ease-out-expo);
+  }
+  .btn:hover::before, .btn:focus-visible::before { transform: translateY(0); }
+
+  .btn-primary {
+    background: var(--color-fg);
+    color: var(--color-void);
+  }
+  .btn-primary::before { background: var(--accent); }
+  .btn-primary:hover, .btn-primary:focus-visible { color: #fff; }
+
+  .btn-ghost {
+    border: 1px solid var(--color-line-strong);
+    color: var(--color-fg);
+    background: color-mix(in oklab, var(--color-void) 40%, transparent);
+    backdrop-filter: blur(10px);
+  }
+  .btn-ghost::before { background: var(--color-fg); }
+  .btn-ghost:hover, .btn-ghost:focus-visible { color: var(--color-void); border-color: var(--color-fg); }
+
+  .btn-accent {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 10px 40px -10px color-mix(in oklab, var(--accent) 70%, transparent);
+  }
+  .btn-accent::before { background: var(--color-fg); }
+  .btn-accent:hover, .btn-accent:focus-visible { color: var(--color-void); }
+
+  /* Rolling text on hover: duplicate label slides up */
+  .roll { display: inline-grid; overflow: hidden; height: 1.25em; line-height: 1.25em; }
+  .roll > span { grid-area: 1 / 1; transition: transform 0.55s var(--ease-out-expo); }
+  .roll > span:last-child { transform: translateY(100%); }
+  :is(a, button):hover .roll > span:first-child,
+  :is(a, button):focus-visible .roll > span:first-child { transform: translateY(-100%); }
+  :is(a, button):hover .roll > span:last-child,
+  :is(a, button):focus-visible .roll > span:last-child { transform: translateY(0); }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    height: 2rem;
+    padding: 0 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line-strong);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--color-muted);
+    background: color-mix(in oklab, var(--color-void) 50%, transparent);
+    white-space: nowrap;
+  }
+
+  .status-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: #4ade80;
+    color: #4ade80;
+    animation: var(--animate-pulse-dot);
+  }
+
+  .hairline { border-color: var(--color-line); }
+
+  /* Card with a spotlight that follows the pointer (--mx/--my set from JS) */
+  .spotlight {
+    position: relative;
+    isolation: isolate;
+  }
+  .spotlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.5s;
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in oklab, var(--accent) 22%, transparent),
+      transparent 60%
+    );
+  }
+  .spotlight:hover::before { opacity: 1; }
+
+  .form-field {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--color-line-strong);
+    padding: 1.1rem 0 0.9rem;
+    font-size: 1.05rem;
+    color: var(--color-fg);
+    transition: border-color 0.3s;
+    border-radius: 0;
+  }
+  .form-field::placeholder { color: var(--color-dim); }
+  .form-field:focus { outline: none; border-color: var(--accent); }
+}
+
+/* ───────────────────────────── Global effects ───────────────────────────── */
+
+/* The accent colour animates smoothly when the section changes. */
+@property --accent { syntax: '<color>'; inherits: true; initial-value: #9d7bff; }
+@property --accent-2 { syntax: '<color>'; inherits: true; initial-value: #5ee7ff; }
+:root { transition: --accent 0.9s ease, --accent-2 0.9s ease; }
+
+.spin-slow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spin-slow 9s linear infinite;
+}
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+
+/* Film grain over everything (very subtle). The wrapper clips the oversized,
+   jittering noise so it never widens the page. */
+.grain-wrap {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  overflow: hidden;
+}
+.grain {
+  position: absolute;
+  inset: -50%;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1.2s steps(6) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, -1%); }
+  80% { transform: translate(3%, 3%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Custom cursor: hide the system cursor only when ours is running. */
+.has-custom-cursor,
+.has-custom-cursor * { cursor: none !important; }
+.has-custom-cursor :is(input, textarea, select, [contenteditable='true']) { cursor: text !important; }
+.has-custom-cursor iframe { cursor: auto !important; }
+
+/* Project titles shrink with their length so long names fit their column. */
+.project-title {
+  font-size: clamp(3rem, min(13vw, calc(86vw / (var(--len, 6) * 0.7))), 13rem);
+}
+@media (min-width: 768px) {
+  .project-title {
+    font-size: clamp(3rem, min(13vw, calc(52vw / (var(--len, 6) * 0.7))), 13rem);
+  }
+}
+
+/* CSS-only fallback background when WebGL is unavailable. */
+.no-webgl-bg {
+  background:
+    radial-gradient(60vmax 60vmax at 75% 30%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 60%),
+    radial-gradient(50vmax 50vmax at 15% 80%, rgb(94 231 255 / 0.08), transparent 60%),
+    var(--color-void);
+  transition: background 1s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .grain { display: none; }
+}

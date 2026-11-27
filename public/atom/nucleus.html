@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The nucleus: isotopes, the strong force and radioactivity · Atom</title>
+  <meta name="description" content="How the atomic nucleus holds together, why most combinations of protons and neutrons fall apart, and where nuclear energy comes from. Explore all known nuclides with IAEA data.">
+  <meta property="og:title" content="The nucleus: isotopes, the strong force and radioactivity">
+  <meta property="og:description" content="All known nuclides, the binding-energy curve, decay chains and E = mc².">
+  <meta property="og:image" content="https://theanomality.github.io/Atom-Anomality/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f5f2eb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121211" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/figures.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <script type="importmap">{"imports":{"three":"./assets/vendor/three.module.min.js","three/addons/":"./assets/vendor/addons/"}}</script>
+  <script type="module" src="assets/js/site.js"></script>
+</head>
+<body>
+<!-- header:start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="wordmark" href="./" aria-label="Atom, home">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><g transform="rotate(32 13 13)"><path d="M13 13C8.7 9.6 8.4 2.3 13 2.3s4.3 7.3 0 10.7z" fill="var(--accent)"/><path d="M13 13c-4.3 3.4-4.6 10.7 0 10.7s4.3-7.3 0-10.7z" fill="currentColor"/></g><circle cx="13" cy="13" r="1.9" fill="var(--bg)" stroke="currentColor" stroke-width="1.2"/></svg>
+      <span>Atom</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <div class="nav-menu" data-menu>
+        <button class="navlink" type="button" aria-expanded="false" aria-controls="chapters-panel">Chapters</button>
+        <div class="nav-menu__panel" id="chapters-panel">
+          <a href="scale.html"><span class="num">01</span><span class="t">Smaller than small</span><span class="d">How tiny atoms are, and what they are made of</span></a>
+          <a href="discovery.html"><span class="num">02</span><span class="t">How we found out</span><span class="d">Two thousand years of guesses, and the experiments that settled them</span></a>
+          <a href="quantum.html"><span class="num">03</span><span class="t">Quantum leaps</span><span class="d">Why electrons sit on energy ladders, and how that makes light</span></a>
+          <a href="orbitals.html"><span class="num">04</span><span class="t">Orbitals</span><span class="d">The true shapes of electron clouds, computed live</span></a>
+          <a href="periodic.html"><span class="num">05</span><span class="t">Building the table</span><span class="d">How filling orbitals gives the periodic table its shape</span></a>
+          <a href="nucleus.html" aria-current="page"><span class="num">06</span><span class="t">The nucleus</span><span class="d">Isotopes, the strong force, radioactivity and E = mc²</span></a>
+          <a href="bonding.html"><span class="num">07</span><span class="t">Atoms together</span><span class="d">Why atoms bond, and what a bond actually is</span></a>
+        </div>
+      </div>
+      <a class="navlink" href="table.html">Periodic table</a>
+      <a class="navlink navlink--wide" href="nuclides.html">Nuclides</a>
+      <a class="navlink navlink--wide" href="spectra.html">Spectra</a>
+      <a class="navlink navlink--wide" href="build.html">Build an atom</a>
+    </nav>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-sheet">Menu</button>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode"></button>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+<!-- header:end -->
+
+<main id="main" data-progress>
+  <header class="chapter-head">
+    <p class="kicker">Chapter 6</p>
+    <h1>The nucleus</h1>
+    <p class="dek">Tens of thousands of times narrower than the atom, yet holding nearly all of its mass. How the nucleus holds together, why most combinations of protons and neutrons fall apart, and where the energy of the Sun comes from.</p>
+  </header>
+
+  <article class="prose">
+    <p class="lede">Everything chemists care about happens in the electron cloud. The nucleus just sits at the centre, supplying positive charge and almost all of the mass. But inside that speck is a second world with its own forces, its own shell structure, and energies millions of times larger than any chemical reaction.</p>
+
+    <h2><span class="sec">6.1</span>Protons, neutrons and isotopes</h2>
+    <p>A nucleus contains protons and neutrons, together called <em>nucleons</em>. The number of protons, <var>Z</var>, fixes the element: every atom with six protons is carbon. The number of neutrons, <var>N</var>, can vary, and atoms of the same element with different neutron counts are called <em>isotopes</em>. They are written with the total number of nucleons, the mass number <var>A</var> = <var>Z</var> + <var>N</var>: carbon-12 has six protons and six neutrons, carbon-13 has seven neutrons, and carbon-14 has eight.</p>
+    <p>Because isotopes have the same number of electrons, they behave almost identically in chemistry. Their nuclei can be completely different. Carbon-12 and carbon-13 are stable forever; carbon-14 decays, with half of any sample gone after 5,700 years.</p>
+    <aside class="note">Hydrogen’s isotopes are the only ones with their own names: protium (no neutrons), deuterium (one) and tritium (two, radioactive, half-life 12.3 years).</aside>
+
+    <h2><span class="sec">6.2</span>What holds it together?</h2>
+    <p>A nucleus should not exist. Its protons are all positively charged and packed about a femtometre apart, and at that distance the electrical repulsion between two of them is about 230 newtons: roughly the weight of a 23-kilogram suitcase, acting on particles that weigh 10<sup>−27</sup> kg. Something much stronger must be holding them in place.</p>
+    <p>That something is the <em>strong nuclear force</em>, a leftover of the force that binds quarks inside each proton and neutron. It attracts protons and neutrons alike, and at a separation of about one femtometre it overwhelms the electrical repulsion. But it has a very short reach. A couple of femtometres further out it has all but disappeared, while the electrical repulsion, which fades only slowly, carries on.</p>
+
+    <figure class="wide">
+      <div class="fig" data-figure="strong-force"></div>
+      <figcaption><b>Figure 6.1</b> Potential energy of two protons at different separations. The nuclear part uses a simple model of the Malfliet–Tjon form, fitted to nucleon scattering experiments; real nuclear forces are more complicated, but have the same short range, deep attraction and repulsive core. Hover for values.</figcaption>
+    </figure>
+
+    <p>This mismatch shapes the whole nucleus. Each nucleon is held only by its immediate neighbours, but every proton repels every other proton in the nucleus. In a small nucleus that repulsion is easily outweighed. In a big one, the repulsion adds up and adds up, which is why no stable nucleus has more than 82 protons.</p>
+
+    <h2><span class="sec">6.3</span>Neutrons are the glue</h2>
+    <p>Neutrons add strong-force attraction without adding any electrical repulsion. Light nuclei are most stable with roughly equal numbers of protons and neutrons: helium-4, carbon-12 and oxygen-16 all have <var>N</var> = <var>Z</var>. Heavier nuclei need an increasing surplus of neutrons to hold their protons together. Lead-208, the heaviest stable nucleus, has 82 protons and 126 neutrons.</p>
+    <p>But neutrons cannot be added without limit either. A nucleus with too many neutrons turns one of them into a proton (beta-minus decay); one with too few turns a proton into a neutron. Only a narrow band of combinations survives.</p>
+
+    <h2><span class="sec">6.4</span>The map of all nuclei</h2>
+    <p>Plot every known nucleus by its numbers of protons and neutrons and you get the chart of nuclides, the nuclear physicist’s equivalent of the periodic table. It holds nearly 3,400 nuclei. Only 244 have never been seen to decay. A few dozen more decay so slowly that they have survived since before the Earth formed, which is why uranium and thorium are still found in the ground.</p>
+
+    <figure class="wide">
+      <div class="fig" data-figure="nuclide-chart"></div>
+      <figcaption><b>Figure 6.2</b> Every nucleus listed in the IAEA’s LiveChart of Nuclides, coloured by how it decays. Stable nuclei form the dark valley of stability. Nuclei to its upper left have too many protons; those to its lower right have too many neutrons. Zoom in to read names and half-lives, or open the full-screen <a href="nuclides.html">chart of nuclides</a>.</figcaption>
+    </figure>
+
+    <p>Look closely and you will see faint bands at 2, 8, 20, 28, 50, 82 and 126. Nuclei with these “magic” numbers of protons or neutrons are unusually stable. Tin, with 50 protons, has ten stable isotopes, more than any other element. The explanation, worked out independently by Maria Goeppert Mayer and by Hans Jensen’s group in 1949, is that nucleons also fill shells, just as electrons do in atoms. It earned them the 1963 Nobel Prize in Physics.</p>
+    <aside class="note">Bismuth-209 was long counted as stable. In 2003 it was caught decaying, with a half-life of about 2 × 10<sup>19</sup> years: more than a billion times the age of the universe.</aside>
+
+    <h2><span class="sec">6.5</span>Missing mass: E = mc²</h2>
+    <p>Weigh a helium-4 atom and you find something strange: it is lighter than the two hydrogen atoms and two neutrons it is made from, by about 0.75%. The missing mass has not vanished. It left as energy when the nucleus formed, according to Einstein’s E = mc², and it is exactly the energy you would need to supply to pull the nucleus apart again. This is the <em>binding energy</em>.</p>
+
+    <figure class="wide">
+      <div class="fig" data-figure="binding-curve"></div>
+      <figcaption><b>Figure 6.3</b> Binding energy per nucleon for every nucleus whose mass has been measured, from the 2020 Atomic Mass Evaluation. Select any point, or a button, to see the mass-defect arithmetic.</figcaption>
+    </figure>
+
+    <p>This curve is one of the most important graphs in physics. It rises steeply through the light elements, peaks around iron and nickel, and slowly falls for the heaviest nuclei. Anything that moves nuclei uphill releases energy. Fusing light nuclei moves them up the left side: that is how stars shine. Splitting heavy nuclei moves them up the right side: that is how nuclear reactors and atomic bombs work. The single most tightly bound nucleus is nickel-62, just ahead of iron-58 and iron-56.</p>
+    <p>The amounts are enormous. Fusing four hydrogen nuclei into helium, as the Sun does, converts 0.7% of their mass into energy: 26.7 MeV for each helium nucleus made. Burning a carbon atom releases about 4 eV. To power its output, the Sun turns about 4 million tonnes of matter into energy every second.</p>
+
+    <h2><span class="sec">6.6</span>Radioactive decay</h2>
+    <p>Unstable nuclei change into more stable ones by emitting particles. The main routes are:</p>
+    <ul>
+      <li><strong>Alpha decay</strong>: the nucleus spits out a helium-4 nucleus (two protons, two neutrons). Common among heavy nuclei, which are trying to shed protons.</li>
+      <li><strong>Beta-minus decay</strong>: a neutron becomes a proton, emitting an electron and an antineutrino. Nuclei with too many neutrons do this.</li>
+      <li><strong>Beta-plus decay and electron capture</strong>: a proton becomes a neutron, either emitting a positron or absorbing one of the atom’s own inner electrons. Nuclei with too few neutrons do this.</li>
+      <li><strong>Gamma emission</strong>: a nucleus left in an excited state drops to a lower one and emits a high-energy photon, exactly like an atom emitting light (<a href="quantum.html">Chapter 3</a>), only a million times more energetic.</li>
+      <li><strong>Spontaneous fission</strong>: a very heavy nucleus simply splits in two.</li>
+    </ul>
+    <p>There is no way to predict when a particular nucleus will decay. What is fixed is the probability: in any one half-life, each nucleus has an even chance of decaying. With enough nuclei, that randomness averages into a smooth, perfectly predictable curve.</p>
+
+    <figure class="wide">
+      <div class="fig" data-figure="decay-sim"></div>
+      <figcaption><b>Figure 6.4</b> A sample of radioactive nuclei, with time compressed so that one half-life takes a few seconds. Each nucleus decays at random; the curve does not. Half-lives from the IAEA.</figcaption>
+    </figure>
+
+    <p>This is what makes radioactive dating possible. Living things take in carbon-14 from the air; when they die, the intake stops and the carbon-14 starts to dwindle. A sample with a quarter of its original carbon-14 has been dead for two half-lives, about 11,400 years. The same arithmetic with uranium-238 and its decay product lead-206 dates the oldest rocks on Earth at around 4 billion years.</p>
+
+    <h2><span class="sec">6.7</span>Decay chains</h2>
+    <p>Often the product of a decay is itself unstable, and decays in turn. Uranium-238 passes through fourteen steps, eight alpha decays and six beta decays, before ending as stable lead-206. Along the way it makes radium, which Marie and Pierre Curie discovered in 1898, and radon, the gas that seeps into basements from granite.</p>
+
+    <figure class="wide">
+      <div class="fig" data-figure="nuclide-chart" data-select="U-238" data-fitchain data-stack></div>
+      <figcaption><b>Figure 6.5</b> The uranium-238 decay chain traced on the chart of nuclides, following each nucleus’s main decay route. Alpha decays step two squares down and two to the left; beta-minus decays step one up and one to the left. Search for Th-232 or U-235 to follow the other natural decay chains.</figcaption>
+    </figure>
+
+    <h2><span class="sec">6.8</span>Splitting and joining</h2>
+    <p>When a uranium-235 nucleus absorbs a slow neutron it can split into two mid-sized nuclei plus two or three new neutrons, releasing about 200 MeV. If enough of the new neutrons go on to split further nuclei, the reaction sustains itself. Controlled, that is a nuclear power station. A kilogram of uranium-235, fully fissioned, releases about as much energy as burning 3,000 tonnes of coal.</p>
+    <p>Fusion goes the other way. Joining a deuterium nucleus to a tritium nucleus makes helium-4 and a neutron, releasing 17.6 MeV. It is the reaction that fusion reactors aim to harness: the fuel is abundant, and the reaction makes no long-lived radioactive waste of its own, although its neutrons do make the reactor’s walls radioactive. The obstacle is the electrical repulsion from Figure 6.1: the nuclei must be slammed together hard enough to reach the range of the strong force, which takes temperatures above 100 million kelvin.</p>
+
+    <section class="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">Sources and further reading</h2>
+      <ol>
+        <li>IAEA Nuclear Data Section, <a href="https://www-nds.iaea.org/relnsd/vcharthtml/VChartHTML.html">LiveChart of Nuclides</a> and its <a href="https://www-nds.iaea.org/relnsd/vcharthtml/api_v0_guide.html">data API</a>. Source of every half-life, decay mode, abundance and mass on this page.</li>
+        <li>M. Wang et al., “The AME 2020 atomic mass evaluation (II)”, <em>Chinese Physics C</em> 45, 030003 (2021).</li>
+        <li>F. G. Kondev et al., “The NUBASE2020 evaluation of nuclear physics properties”, <em>Chinese Physics C</em> 45, 030001 (2021).</li>
+        <li>R. A. Malfliet and J. A. Tjon, “Solution of the Faddeev equations for the triton problem using local two-particle interactions”, <em>Nuclear Physics A</em> 127, 161 (1969).</li>
+        <li>M. Goeppert Mayer, “On closed shells in nuclei. II”, <em>Physical Review</em> 75, 1969 (1949); O. Haxel, J. H. D. Jensen and H. E. Suess, <em>Physical Review</em> 75, 1766 (1949).</li>
+        <li>J. Chadwick, “Possible existence of a neutron”, <em>Nature</em> 129, 312 (1932).</li>
+      </ol>
+    </section>
+  </article>
+
+  <nav class="chapter-nav" aria-label="Chapters">
+    <a class="prev" href="periodic.html"><span class="dir">← Chapter 5</span><span class="t">Building the table</span></a>
+    <a class="next" href="bonding.html"><span class="dir">Chapter 7 →</span><span class="t">Atoms together</span></a>
+  </nav>
+</main>
+
+<!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <h2>About</h2>
+      <p>A free, interactive guide to the atom. Every number on this site comes from a cited measurement or is computed from physics in your browser. Nothing is made up for effect.</p>
+      <p><a href="https://github.com/TheAnomality/Atom-Anomality">Source code on GitHub</a></p>
+    </div>
+    <div>
+      <h2>Data</h2>
+      <ul>
+        <li><a href="https://pubchem.ncbi.nlm.nih.gov/periodic-table/">PubChem</a>: element properties and descriptions</li>
+        <li><a href="https://physics.nist.gov/asd">NIST Atomic Spectra Database</a>: spectral lines, configurations, ionisation energies</li>
+        <li><a href="https://www-nds.iaea.org/relnsd/vcharthtml/VChartHTML.html">IAEA LiveChart of Nuclides</a>: half-lives, decay modes, masses</li>
+        <li><a href="https://www.mediawiki.org/wiki/API:REST_API">Wikipedia REST API</a>: element summaries</li>
+        <li><a href="https://physics.nist.gov/cuu/Constants/">CODATA 2018</a>: physical constants</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Explore</h2>
+      <ul>
+        <li><a href="table.html">Periodic table</a></li>
+        <li><a href="nuclides.html">Chart of nuclides</a></li>
+        <li><a href="spectra.html">Atomic spectra</a></li>
+        <li><a href="build.html">Build an atom</a></li>
+        <li><a href="orbitals.html#explorer">Orbital explorer</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<!-- footer:end -->
+</body>
+</html>
