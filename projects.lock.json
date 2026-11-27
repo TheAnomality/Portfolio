@@ -1,0 +1,14 @@
+{
+  "atom": {
+    "repo": "https://github.com/TheAnomality/Atom-Anomality.git",
+    "branch": "main",
+    "commit": "235d78b3878b56d0c6316aa28a71ae5232ce16b0",
+    "syncedAt": "2026-11-27T15:58:20.559Z"
+  },
+  "animewiki": {
+    "repo": "https://github.com/TheAnomality/AnimeWiki.git",
+    "branch": "main",
+    "commit": "fb8b9b0753526e6fa611b82a707cb6ec7d0371a6",
+    "syncedAt": "2026-11-27T15:58:21.177Z"
+  }
+}

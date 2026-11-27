@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chart of nuclides · Atom</title>
+  <meta name="description" content="An interactive chart of every known atomic nucleus, nearly 3,400 of them, with half-lives, decay modes, binding energies and decay chains from the IAEA LiveChart of Nuclides.">
+  <meta property="og:title" content="Chart of nuclides">
+  <meta property="og:description" content="Every known nucleus, with half-lives, decay modes and decay chains.">
+  <meta property="og:image" content="https://theanomality.github.io/Atom-Anomality/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f5f2eb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121211" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/figures.css">
+  <link rel="stylesheet" href="assets/css/table.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <script type="importmap">{"imports":{"three":"./assets/vendor/three.module.min.js","three/addons/":"./assets/vendor/addons/"}}</script>
+  <script type="module" src="assets/js/site.js"></script>
+</head>
+<body>
+<!-- header:start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="wordmark" href="./" aria-label="Atom, home">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><g transform="rotate(32 13 13)"><path d="M13 13C8.7 9.6 8.4 2.3 13 2.3s4.3 7.3 0 10.7z" fill="var(--accent)"/><path d="M13 13c-4.3 3.4-4.6 10.7 0 10.7s4.3-7.3 0-10.7z" fill="currentColor"/></g><circle cx="13" cy="13" r="1.9" fill="var(--bg)" stroke="currentColor" stroke-width="1.2"/></svg>
+      <span>Atom</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <div class="nav-menu" data-menu>
+        <button class="navlink" type="button" aria-expanded="false" aria-controls="chapters-panel">Chapters</button>
+        <div class="nav-menu__panel" id="chapters-panel">
+          <a href="scale.html"><span class="num">01</span><span class="t">Smaller than small</span><span class="d">How tiny atoms are, and what they are made of</span></a>
+          <a href="discovery.html"><span class="num">02</span><span class="t">How we found out</span><span class="d">Two thousand years of guesses, and the experiments that settled them</span></a>
+          <a href="quantum.html"><span class="num">03</span><span class="t">Quantum leaps</span><span class="d">Why electrons sit on energy ladders, and how that makes light</span></a>
+          <a href="orbitals.html"><span class="num">04</span><span class="t">Orbitals</span><span class="d">The true shapes of electron clouds, computed live</span></a>
+          <a href="periodic.html"><span class="num">05</span><span class="t">Building the table</span><span class="d">How filling orbitals gives the periodic table its shape</span></a>
+          <a href="nucleus.html"><span class="num">06</span><span class="t">The nucleus</span><span class="d">Isotopes, the strong force, radioactivity and E = mc²</span></a>
+          <a href="bonding.html"><span class="num">07</span><span class="t">Atoms together</span><span class="d">Why atoms bond, and what a bond actually is</span></a>
+        </div>
+      </div>
+      <a class="navlink" href="table.html">Periodic table</a>
+      <a class="navlink navlink--wide" href="nuclides.html" aria-current="page">Nuclides</a>
+      <a class="navlink navlink--wide" href="spectra.html">Spectra</a>
+      <a class="navlink navlink--wide" href="build.html">Build an atom</a>
+    </nav>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-sheet">Menu</button>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode"></button>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+<!-- header:end -->
+
+<main id="main">
+  <header class="tool-head">
+    <div class="tool-head__text">
+      <p class="kicker">Tool</p>
+      <h1>Chart of nuclides</h1>
+      <p>Every known atomic nucleus, placed by its number of protons and neutrons. Scroll or pinch to zoom, drag to pan, and select any square for its half-life, decay modes, mass and full decay chain. Data from the IAEA LiveChart of Nuclides (NUBASE2020 and AME2020 evaluations).</p>
+    </div>
+  </header>
+  <div class="pt-wrap" data-figure="nuclide-chart" data-full data-eager></div>
+  <div class="prose" style="margin-top:3rem">
+    <h2 style="margin-top:1.5em">Reading the chart</h2>
+    <p>Each row is one element; each square along it is one isotope. The black squares, the stable nuclei, trace a curved valley that starts out along the diagonal, where protons and neutrons are equal, and bends towards more neutrons as nuclei get heavier. Nuclei above the valley have too many protons and usually decay by turning a proton into a neutron (red). Nuclei below it have too many neutrons and turn a neutron into a proton (blue). The heaviest ones shed alpha particles (yellow) or split apart (green).</p>
+    <p>The outer edges are the <em>drip lines</em>, where nuclei are so overloaded with protons or neutrons that the extra particle is not bound at all. Many nuclei inside those limits have never been made; the search for them continues at accelerators around the world. <a href="nucleus.html">Chapter 6</a> explains the physics behind the pattern.</p>
+  </div>
+</main>
+
+<!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <h2>About</h2>
+      <p>A free, interactive guide to the atom. Every number on this site comes from a cited measurement or is computed from physics in your browser. Nothing is made up for effect.</p>
+      <p><a href="https://github.com/TheAnomality/Atom-Anomality">Source code on GitHub</a></p>
+    </div>
+    <div>
+      <h2>Data</h2>
+      <ul>
+        <li><a href="https://pubchem.ncbi.nlm.nih.gov/periodic-table/">PubChem</a>: element properties and descriptions</li>
+        <li><a href="https://physics.nist.gov/asd">NIST Atomic Spectra Database</a>: spectral lines, configurations, ionisation energies</li>
+        <li><a href="https://www-nds.iaea.org/relnsd/vcharthtml/VChartHTML.html">IAEA LiveChart of Nuclides</a>: half-lives, decay modes, masses</li>
+        <li><a href="https://www.mediawiki.org/wiki/API:REST_API">Wikipedia REST API</a>: element summaries</li>
+        <li><a href="https://physics.nist.gov/cuu/Constants/">CODATA 2018</a>: physical constants</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Explore</h2>
+      <ul>
+        <li><a href="table.html">Periodic table</a></li>
+        <li><a href="nuclides.html" aria-current="page">Chart of nuclides</a></li>
+        <li><a href="spectra.html">Atomic spectra</a></li>
+        <li><a href="build.html">Build an atom</a></li>
+        <li><a href="orbitals.html#explorer">Orbital explorer</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<!-- footer:end -->
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Dependencies and build output
+node_modules/
+dist/
+
+# Vercel CLI (created by `vercel link` / `vercel dev`)
+.vercel/
+
+# Secrets: never commit these
+.env
+.env.*
+!.env.example
+
+# HyperFrames working files (renders are copied into public/media)
+showreel/.hyperframes/
+showreel/renders/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/*
+!.vscode/extensions.json

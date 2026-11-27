@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Building the table: electron configurations · Atom</title>
+  <meta name="description" content="Add electrons one at a time and watch the periodic table assemble itself. Aufbau, Pauli and Hund’s rules, why 4s fills before 3d, shielding, and periodic trends, with NIST data.">
+  <meta property="og:title" content="Building the periodic table, one electron at a time">
+  <meta property="og:description" content="How filling orbitals gives the periodic table its shape.">
+  <meta property="og:image" content="https://theanomality.github.io/Atom-Anomality/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f5f2eb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121211" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/figures.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <script type="importmap">{"imports":{"three":"./assets/vendor/three.module.min.js","three/addons/":"./assets/vendor/addons/"}}</script>
+  <script type="module" src="assets/js/site.js"></script>
+</head>
+<body>
+<!-- header:start -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="wordmark" href="./" aria-label="Atom, home">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><g transform="rotate(32 13 13)"><path d="M13 13C8.7 9.6 8.4 2.3 13 2.3s4.3 7.3 0 10.7z" fill="var(--accent)"/><path d="M13 13c-4.3 3.4-4.6 10.7 0 10.7s4.3-7.3 0-10.7z" fill="currentColor"/></g><circle cx="13" cy="13" r="1.9" fill="var(--bg)" stroke="currentColor" stroke-width="1.2"/></svg>
+      <span>Atom</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <div class="nav-menu" data-menu>
+        <button class="navlink" type="button" aria-expanded="false" aria-controls="chapters-panel">Chapters</button>
+        <div class="nav-menu__panel" id="chapters-panel">
+          <a href="scale.html"><span class="num">01</span><span class="t">Smaller than small</span><span class="d">How tiny atoms are, and what they are made of</span></a>
+          <a href="discovery.html"><span class="num">02</span><span class="t">How we found out</span><span class="d">Two thousand years of guesses, and the experiments that settled them</span></a>
+          <a href="quantum.html"><span class="num">03</span><span class="t">Quantum leaps</span><span class="d">Why electrons sit on energy ladders, and how that makes light</span></a>
+          <a href="orbitals.html"><span class="num">04</span><span class="t">Orbitals</span><span class="d">The true shapes of electron clouds, computed live</span></a>
+          <a href="periodic.html" aria-current="page"><span class="num">05</span><span class="t">Building the table</span><span class="d">How filling orbitals gives the periodic table its shape</span></a>
+          <a href="nucleus.html"><span class="num">06</span><span class="t">The nucleus</span><span class="d">Isotopes, the strong force, radioactivity and E = mc²</span></a>
+          <a href="bonding.html"><span class="num">07</span><span class="t">Atoms together</span><span class="d">Why atoms bond, and what a bond actually is</span></a>
+        </div>
+      </div>
+      <a class="navlink" href="table.html">Periodic table</a>
+      <a class="navlink navlink--wide" href="nuclides.html">Nuclides</a>
+      <a class="navlink navlink--wide" href="spectra.html">Spectra</a>
+      <a class="navlink navlink--wide" href="build.html">Build an atom</a>
+    </nav>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-sheet">Menu</button>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode"></button>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+<!-- header:end -->
+
+<main id="main" data-progress>
+  <header class="chapter-head">
+    <p class="kicker">Chapter 5</p>
+    <h1>Building the table</h1>
+    <p class="dek">Add electrons one at a time, follow three rules, and the periodic table assembles itself. Its strange shape is the shape of quantum mechanics.</p>
+  </header>
+
+  <article class="prose">
+    <p class="lede">In 1869 Dmitri Mendeleev, a chemistry professor in St Petersburg, arranged the 63 elements then known in order of atomic weight and noticed that their properties repeated at regular intervals. Where the pattern demanded an element nobody had found, he left a gap and predicted what it would be like. He could not have known why the pattern existed. The answer took another sixty years, and it lies in how electrons fill orbitals.</p>
+
+    <h2><span class="sec">5.1</span>Three rules for filling an atom</h2>
+    <p>Imagine building every element in turn, adding one proton to the nucleus and one electron to the cloud each time. Each new electron settles according to three rules.</p>
+    <ol>
+      <li><strong>Lowest energy first.</strong> Each electron takes the lowest-energy orbital still available. This is the <em>aufbau</em> principle, from the German for “building up”.</li>
+      <li><strong>Two per orbital.</strong> No two electrons can share all four quantum numbers (the Pauli exclusion principle from <a href="orbitals.html">Chapter 4</a>), so an orbital holds two electrons with opposite spins, and no more.</li>
+      <li><strong>Spread out before pairing.</strong> Among orbitals of equal energy, electrons first occupy separate orbitals with parallel spins, and only then double up. Electrons repel each other less when apart. This is Hund’s rule.</li>
+    </ol>
+
+    <figure class="wide">
+      <div class="fig" data-figure="aufbau"></div>
+      <figcaption><b>Figure 5.1</b> Subshells in the order they fill, lowest energy at the bottom. Each box is one orbital with room for two electrons, drawn as arrows for the two spin directions. The newest electron’s subshell is outlined in red. The miniature table fills in alongside, coloured by block. Configurations are the measured ground states from NIST; beyond element 108 they are theoretical predictions.</figcaption>
+    </figure>
+
+    <h2><span class="sec">5.2</span>Why 4s comes before 3d</h2>
+    <p>The filling order holds a surprise. After argon, the next electron goes into 4s rather than 3d, even though 3 is smaller than 4. In hydrogen, where only <var>n</var> matters, 3d would come first. In larger atoms, inner electrons shield the nucleus, and orbitals that dip close to it feel more of its pull and drop in energy. An s orbital, with its inner lobes (Figure 4.3 shows them), penetrates furthest. The outcome is summed up by a rule of thumb usually credited to Erwin Madelung: orbitals fill in order of <var>n</var> + ℓ, and when two are tied, the one with lower <var>n</var> fills first.</p>
+    <p>The rule is right for most elements but not all. Of the first 103, twenty have measured ground states that break it, starting with chromium, [Ar]&nbsp;3d<sup>5</sup>&nbsp;4s<sup>1</sup> instead of the predicted 3d<sup>4</sup>&nbsp;4s<sup>2</sup>, and copper, [Ar]&nbsp;3d<sup>10</sup>&nbsp;4s<sup>1</sup>. Near the crossover, the 4s and 3d energies are so close that subtle effects of electron repulsion decide the winner. Step to element 24 in Figure 5.1 to see the first exception flagged.</p>
+    <aside class="note">A further subtlety: once 3d is occupied, it sits <em>below</em> 4s in energy. That is why transition metals lose their 4s electrons first when they form ions. The filling order describes which whole configuration has the lowest total energy, not a fixed ranking of single orbitals <a href="#src-5">[5]</a>.</aside>
+
+    <h2><span class="sec">5.3</span>The shape of the table</h2>
+    <p>Now the layout makes sense. The two columns on the left are the <strong>s-block</strong>: an s subshell holds two electrons. The six columns on the right are the <strong>p-block</strong>: three p orbitals, six electrons. The ten columns in the middle are the <strong>d-block</strong>, five d orbitals. The two rows of fourteen set beneath the table are the <strong>f-block</strong>, seven f orbitals, placed below only so that the table fits on a page. A period ends each time a p subshell fills up, which makes periods of 2, 8, 8, 18, 18, 32 and 32 elements.</p>
+    <p>Elements in the same column share the same arrangement of outer electrons, and outer electrons are what chemistry is made of. That is why fluorine, chlorine and bromine all grab one extra electron given the chance, why sodium and potassium both give one away, and why helium, neon and argon barely react at all.</p>
+
+    <h2><span class="sec">5.4</span>Shielding</h2>
+    <p>Every electron feels the charge of the nucleus partly cancelled by the electrons between it and the nucleus. A sodium atom has 11 protons, but its single outer electron sits outside 10 others and feels an effective charge of only about +2. Moving across a period, each element adds one proton but its new electron goes into the same shell, where electrons shield each other poorly, so the effective charge climbs steadily. When a new shell begins, the outer electron suddenly has a whole extra layer of shielding beneath it, and the effective charge falls back.</p>
+
+    <figure class="wide">
+      <div class="fig" data-figure="zeff"></div>
+      <figcaption><b>Figure 5.2</b> Effective nuclear charge felt by the outermost electron, estimated with Slater’s rules: inner electrons shield almost completely, electrons in the same shell only about a third. Select a point to see the breakdown.</figcaption>
+    </figure>
+
+    <h2><span class="sec">5.5</span>Periodic trends</h2>
+    <p>Effective charge explains most of what makes the table periodic. A larger effective charge holds the outer electrons more tightly, so they are harder to remove, the atom is smaller, and it pulls harder on electrons it shares with neighbours.</p>
+
+    <figure class="wide">
+      <div class="fig" data-figure="trend-plot"></div>
+      <figcaption><b>Figure 5.3</b> Periodic trends across the first five periods. Ionisation energies from the NIST Atomic Spectra Database; electronegativities on Pauling’s scale from PubChem. Red points are alkali metals, purple points noble gases. Every property is mapped across all 118 elements in the <a href="table.html">periodic table tool</a>.</figcaption>
+    </figure>
+
+    <p>The ionisation energy curve is the most direct evidence for shells that exists. Each peak is a noble gas with a completed shell; each cliff is an alkali metal starting a new one. The little dips inside each period are evidence for sub-shells: boron’s outer electron is easier to remove than beryllium’s because it sits in a 2p orbital, slightly higher in energy than 2s. Oxygen’s is easier to remove than nitrogen’s because oxygen’s fourth 2p electron is forced to share an orbital, and paired electrons repel.</p>
+
+    <h2><span class="sec">5.6</span>Mendeleev’s gamble</h2>
+    <p>Mendeleev predicted three missing elements in detail, and all three were found within seventeen years: gallium in 1875, scandium in 1879 and germanium in 1886. Here is his 1871 forecast for the element he called eka-silicon, beside the one Clemens Winkler discovered.</p>
+    <div class="table-scroll">
+      <table class="datatable">
+        <thead><tr><th>Property</th><th>Eka-silicon (predicted 1871)</th><th>Germanium (found 1886)</th></tr></thead>
+        <tbody>
+          <tr><td>Atomic weight</td><td class="n">72</td><td class="n">72.63</td></tr>
+          <tr><td>Density</td><td class="n">5.5 g/cm³</td><td class="n">5.32 g/cm³</td></tr>
+          <tr><td>Oxide and its density</td><td class="n">EsO₂, 4.7 g/cm³</td><td class="n">GeO₂, 4.23 g/cm³</td></tr>
+          <tr><td>Chloride</td><td class="n">EsCl₄, boils below 100 °C</td><td class="n">GeCl₄, boils at 86.5 °C</td></tr>
+          <tr><td>Density of chloride</td><td class="n">1.9 g/cm³</td><td class="n">1.88 g/cm³</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>A pattern that can predict the density of a compound of an undiscovered element is not a coincidence. It took quantum mechanics to show what it was: the periodic table is a map of how electron waves fit around a nucleus.</p>
+
+    <section class="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">Sources and further reading</h2>
+      <ol>
+        <li>D. Mendeleev, “Über die Beziehungen der Eigenschaften zu den Atomgewichten der Elemente”, <em>Zeitschrift für Chemie</em> 12, 405 (1869).</li>
+        <li>J. C. Slater, “Atomic shielding constants”, <em>Physical Review</em> 36, 57 (1930).</li>
+        <li><a href="https://physics.nist.gov/PhysRefData/ASD/ionEnergy.html">NIST Atomic Spectra Database: ground states and ionisation energies</a>. Source of all configurations and ionisation energies in this chapter.</li>
+        <li>E. R. Scerri, “Provisional report on discussions on group 3 of the periodic table”, <em>Chemistry International</em> 43(1), 31 (2021).</li>
+        <li id="src-5">W. H. E. Schwarz, “The full story of the electron configurations of the transition elements”, <em>Journal of Chemical Education</em> 87, 444 (2010).</li>
+        <li>E. Madelung, <em>Mathematische Hilfsmittel des Physikers</em>, 3rd ed., Springer (1936).</li>
+      </ol>
+    </section>
+  </article>
+
+  <nav class="chapter-nav" aria-label="Chapters">
+    <a class="prev" href="orbitals.html"><span class="dir">← Chapter 4</span><span class="t">Orbitals</span></a>
+    <a class="next" href="nucleus.html"><span class="dir">Chapter 6 →</span><span class="t">The nucleus</span></a>
+  </nav>
+</main>
+
+<!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <h2>About</h2>
+      <p>A free, interactive guide to the atom. Every number on this site comes from a cited measurement or is computed from physics in your browser. Nothing is made up for effect.</p>
+      <p><a href="https://github.com/TheAnomality/Atom-Anomality">Source code on GitHub</a></p>
+    </div>
+    <div>
+      <h2>Data</h2>
+      <ul>
+        <li><a href="https://pubchem.ncbi.nlm.nih.gov/periodic-table/">PubChem</a>: element properties and descriptions</li>
+        <li><a href="https://physics.nist.gov/asd">NIST Atomic Spectra Database</a>: spectral lines, configurations, ionisation energies</li>
+        <li><a href="https://www-nds.iaea.org/relnsd/vcharthtml/VChartHTML.html">IAEA LiveChart of Nuclides</a>: half-lives, decay modes, masses</li>
+        <li><a href="https://www.mediawiki.org/wiki/API:REST_API">Wikipedia REST API</a>: element summaries</li>
+        <li><a href="https://physics.nist.gov/cuu/Constants/">CODATA 2018</a>: physical constants</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Explore</h2>
+      <ul>
+        <li><a href="table.html">Periodic table</a></li>
+        <li><a href="nuclides.html">Chart of nuclides</a></li>
+        <li><a href="spectra.html">Atomic spectra</a></li>
+        <li><a href="build.html">Build an atom</a></li>
+        <li><a href="orbitals.html#explorer">Orbital explorer</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<!-- footer:end -->
+</body>
+</html>

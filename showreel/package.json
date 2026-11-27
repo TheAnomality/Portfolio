@@ -1,0 +1,11 @@
+{
+  "name": "theanomality-showreel",
+  "private": true,
+  "type": "module",
+  "description": "HyperFrames composition for the portfolio showreel. Edit index.html, preview, render.",
+  "scripts": {
+    "preview": "npx --yes hyperframes@0.9.102 preview",
+    "check": "npx --yes hyperframes@0.9.102 check",
+    "render": "npx --yes hyperframes@0.9.102 render --output renders/showreel.mp4 --fps 30 --quality delivery"
+  }
+}
